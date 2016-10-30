@@ -29,6 +29,7 @@ COPY root/* /root/
 COPY etc/logrotate.d/* /etc/logrotate.d/
 COPY etc/init.d/* /etc/init.d/
 COPY etc/supervisor/ /etc/supervisor/
+COPY etc/security/limits.d/* /etc/security/limits.d/
 
 # Setup supervisord
 RUN mkdir -p /var/log/supervisor

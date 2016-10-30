@@ -2,4 +2,4 @@
 
 service crond start
 service sshd start
-service supervisord start
+service supervisor start
