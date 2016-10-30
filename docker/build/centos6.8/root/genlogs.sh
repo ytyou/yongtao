@@ -8,13 +8,38 @@ source $DIR/startsvc.sh
 
 LOGFILE=/var/log/test.log
 
+MARKER='@#CWIZ#@'
+TYPES=("counter" "gauge" "latency")
+METRICS=("cpu" "disk" "memory" "network")
+TAGNAMES=("tag1" "tag2" "tag3" "tag4" "tag5" "tag6")
+TAGVALUES=("value1" "value2" "value3")
+
 while true
 do
+    # generate metric info
+    id=$(openssl rand -base64 32 | head -c 16)
+    metrictype=${TYPES[$RANDOM % ${#TYPES[@]}]}
     timestamp=$(date)
-    metric1=$(shuf -i 1-100 -n 1)
-    metric2=$(shuf -i 1-10000 -n 1)
-    tag1=$(date | md5sum | head -c 4)
-    tag2=$(openssl rand -base64 32 | head -c 4)
-    echo "${timestamp} metric1=${metric1} metric2=${metric2} tag1=\"${tag1}\" tag2=\"${tag2}\"" >> $LOGFILE
+    metric=${METRICS[$RANDOM % ${#METRICS[@]}]}
+    value=$(shuf -i 1-1000 -n 1)
+
+    # generate tags
+    unset tags
+    declare -A tags
+
+    let cnt=(RANDOM % 4)
+    while ((cnt > 0))
+    do
+        tag=${TAGNAMES[$RANDOM % ${#TAGNAMES[@]}]}
+        val=${TAGVALUES[$RANDOM % ${#TAGVALUES[@]}]}
+        tags[$tag]=$val
+        ((cnt--))
+    done
+    echo -n "${MARKER} $id ${metrictype} ${timestamp} ${metric} ${value}" >> $LOGFILE
+    for tag in ${!tags[@]}; do
+        echo -n " ${tag} ${tags[${tag}]}" >> $LOGFILE
+    done
+    echo >> $LOGFILE
+
     sleep 1
 done
