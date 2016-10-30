@@ -37,7 +37,7 @@ do
     done
     echo -n "${MARKER} $id ${metrictype} ${timestamp} ${metric} ${value}" >> $LOGFILE
     for tag in ${!tags[@]}; do
-        echo -n " ${tag} ${tags[${tag}]}" >> $LOGFILE
+        echo -n " ${tag}=${tags[${tag}]}" >> $LOGFILE
     done
     echo >> $LOGFILE
 
