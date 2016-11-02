@@ -19,7 +19,7 @@ do
     # generate metric info
     id=$(openssl rand -base64 32 | head -c 16)
     metrictype=${TYPES[$RANDOM % ${#TYPES[@]}]}
-    timestamp=$(date)
+    timestamp=$(date +%s)
     metric=${METRICS[$RANDOM % ${#METRICS[@]}]}
     value=$(shuf -i 1-1000 -n 1)
 
