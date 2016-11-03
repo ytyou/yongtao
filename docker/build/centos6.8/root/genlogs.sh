@@ -27,7 +27,7 @@ do
     unset tags
     declare -A tags
 
-    let cnt=(RANDOM % 4)+1
+    let cnt=(RANDOM % 3)+1
     while ((cnt > 0))
     do
         tag=${TAGNAMES[$RANDOM % ${#TAGNAMES[@]}]}
