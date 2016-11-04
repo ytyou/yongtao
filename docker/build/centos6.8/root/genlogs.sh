@@ -41,5 +41,5 @@ do
     done
     echo >> $LOGFILE
 
-    sleep 1
+    sleep 2
 done
