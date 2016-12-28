@@ -5,6 +5,8 @@ LABEL project="yongtao.centos7"
 
 #EXPOSE 22
 
+ENV TERM dumb
+
 RUN yum -y install crontabs epel-release openssh-clients openssh-server python-setuptools sudo tcptraceroute which net-tools iptables
 RUN easy_install supervisor
 RUN yum -y install logrotate
