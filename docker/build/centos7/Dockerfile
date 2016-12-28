@@ -7,7 +7,7 @@ LABEL project="yongtao.centos7"
 
 ENV TERM dumb
 
-RUN yum -y install crontabs epel-release openssh-clients openssh-server python-setuptools sudo tcptraceroute which net-tools iptables
+RUN yum -y install crontabs epel-release openssh-clients openssh-server python-setuptools sudo tcptraceroute which net-tools iptables perl
 RUN easy_install supervisor
 RUN yum -y install logrotate
 RUN useradd -U yongtao
