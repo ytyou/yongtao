@@ -1,18 +1,18 @@
 #!/bin/bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-source $DIR/startsvc.sh
+#source $DIR/startsvc.sh
 
 # Generate log into /var/log/test.log
 
-LOGFILE=/var/log/test.log
+LOGFILE=/var/log/test/test.log
 
 MARKER='@#CWIZ#@'
 TYPES=("counter" "gauge" "latency")
 METRICS=("cpu" "disk" "memory" "network")
 TAGNAMES=("tag1" "tag2" "tag3" "tag4" "tag5" "tag6")
-TAGVALUES=("value1" "value2" "value3")
+TAGVALUES=("value1" "value2" "value3" "exception")
 
 while true
 do
@@ -27,7 +27,7 @@ do
     unset tags
     declare -A tags
 
-    let cnt=(RANDOM % 3)+1
+    let cnt=(RANDOM % ${#TAGVALUES[@]})+1
     while ((cnt > 0))
     do
         tag=${TAGNAMES[$RANDOM % ${#TAGNAMES[@]}]}
@@ -35,11 +35,12 @@ do
         tags[$tag]=$val
         ((cnt--))
     done
-    echo -n "${MARKER} $id ${metrictype} ${timestamp} ${metric} ${value}" >> $LOGFILE
+    log=${LOGFILE}.`date +%Y-%m-%d`
+    echo -n "${MARKER} $id ${metrictype} ${timestamp} ${metric} ${value}" >> $log
     for tag in ${!tags[@]}; do
-        echo -n " ${tag}=${tags[${tag}]}" >> $LOGFILE
+        echo -n " ${tag}=${tags[${tag}]}" >> $log
     done
-    echo >> $LOGFILE
+    echo >> $log
 
-    sleep 5
+    sleep 60
 done
