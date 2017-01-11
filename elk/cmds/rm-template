@@ -1,0 +1,6 @@
+#!/bin/bash
+
+. ./common
+one_required_arg $@
+
+$CURL -XDELETE $ES_URL/_template/$1?pretty

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+ES_URL=172.16.16.102:9200
+CURL=/usr/bin/curl
+
+function one_required_arg() {
+    if [ $# -lt 1 ]; then
+        echo "1 required argument missing"
+        exit 1
+    fi
+    return 0
+}
+
+function two_required_arg() {
+    if [ $# -lt 2 ]; then
+        echo "1 or 2 required argument missing"
+        exit 1
+    fi
+    return 0
+}

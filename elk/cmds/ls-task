@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. ./common
+
+if [ $# -ge 1 ]; then
+    $CURL $ES_URL/_tasks?nodes=$1&pretty
+else
+    $CURL $ES_URL/_tasks?pretty
+fi

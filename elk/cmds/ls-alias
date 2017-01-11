@@ -1,0 +1,14 @@
+#!/bin/bash
+
+. ./common
+
+if [ $# -lt 1 ]; then
+    echo "Listing ALL aliases..."
+    $CURL $ES_URL/_alias?pretty
+elif [ $# -lt 2 ]; then
+    echo "Listing aliases for index $1..."
+    $CURL $ES_URL/$1/_alias/*?pretty
+else
+    echo "Listing alias $2 for index $1..."
+    $CURL $ES_URL/$1/_alias/$2?pretty
+fi
