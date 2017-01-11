@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. ./common
+two_required_arg $@
+
+echo "Adding alias $2 for index $1..."
+$CURL -XPUT $ES_URL/$1/_alias/$2?pretty
