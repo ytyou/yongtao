@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. ./common
+two_required_arg $@
+
+echo "Adding template $1 from file $2..."
+$CURL -XPUT $ES_URL/_template/$1 -d @$2
