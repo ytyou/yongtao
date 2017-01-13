@@ -1,0 +1,11 @@
+Q: What's the GTK theme in use?
+A: $ gsettings get org.gnome.desktop.interface gtk-theme
+
+Q: How to add border to my windows?
+A: Assuming you are using Ambiance theme, edit file
+   /usr/share/themes/Ambiance/gtk-3.0/apps/unity.css
+   and change
+      -UnityDecoration-extents: 28px 0 0 0;
+   to
+      -UnityDecoration-extents: 28px 1px 1px 1px;
+   and logout.

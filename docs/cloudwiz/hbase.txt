@@ -1,0 +1,13 @@
+1. Run "hadoop-dns-checker" to make sure DNS works fine;
+
+2. Set limits on # of files and procs (ulimit) properly;
+   Edit /etc/security/limits.conf:
+
+   hadoop  -       nofile   32768
+   hadoop  -       nproc    32000
+
+   Edit /etc/pam.d/common-session (on ubuntu):
+
+   session required  pam_limits.so
+
+3. Default port: 16010

@@ -1,0 +1,6 @@
+0. Use the following command to edit /etc/sudoers file:
+    $ sudo VISUAL=vim visudo
+1. In /etc/sudoers, add the following line
+    %wheel ALL=(ALL) NOPASSWD: ALL
+2. Join the "wheel" group:
+    $ usermod -a -G wheel yongtao

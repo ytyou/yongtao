@@ -1,0 +1,61 @@
+1. Connect dom0 to wifi by configuring wlp1s0 interface in
+
+   /etc/network/interfaces
+
+2. Enable dummy interface
+
+   $ sudo modprobe dummy
+
+   Also make sure the dummy module will be loaded on startup,
+   by adding the following line in /etc/modules
+
+   dummy
+
+3. Configure dummy0 interface in /etc/network/interfaces
+
+   auto dummy0
+   iface dummy0 inet static
+   address 172.16.16.1
+   netmask 255.255.255.0
+   gateway 172.16.16.1
+   dns-nameservers 172.16.16.1
+
+4. Put dummy0 on the Xen bridge, in /etc/network/interfaces
+
+   auto xenbr0
+   iface xenbr0 inet dhcp
+   bridge_ports dummy0
+
+5. Make sure wifi is enalbed. Go to "System Settings" => Network,
+   and make sure "Wireless" is ON.
+
+6. Edit /etc/sysctl.conf and add the following:
+
+   net.ipv4.ip_forward=1
+   net.ipv6.conf.all.forwarding=1
+
+   net.bridge.bridge-nf-call-ip6tables=0
+   net.bridge.bridge-nf-call-iptables=0
+   net.bridge.bridge-nf-call-arptables=0
+
+   # The following may NOT be necessary
+   net.ipv4.conf.all.rp_filter=0
+   net.ipv4.conf.default.rp_filter=0
+
+7. Create an executable file /etc/network/if-pre-up.d/static-routes
+   with the following:
+
+   #!/bin/sh
+
+   /sbin/route del -net 172.16.16.0 netmask 255.255.255.0 dev dummy0
+   /sbin/route add -net 172.16.16.0 netmask 255.255.255.0 dev xenbr0
+
+   exit 0
+
+8. Make sure iptables on both dom0 and domU are not blocking any
+   traffic between themselves.
+
+9. Enable NAT in dom0 iptables (put this in an executable file under
+   /etc/network/if-pre-up.d):
+
+   $ sudo iptables -t nat -A POSTROUTING -s 172.16.16.0/24 ! -d 172.16.16.0/24 -j MASQUERADE

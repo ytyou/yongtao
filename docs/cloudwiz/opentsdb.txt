@@ -1,0 +1,3 @@
+Configuration: /etc/opentsdb/opentsdb.conf
+Log: /var/log/opentsdb/...
+

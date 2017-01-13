@@ -1,0 +1,8 @@
+1. To install OpenSSH server, run
+$ sudo apt-get install openssh-server
+
+2. Generate ssh key:
+$ ssh-keygen -t rsa
+
+3. Passwordless ssh:
+$ ssh-copy-id -i id_rsa.pub centos5.cloudwiz.io

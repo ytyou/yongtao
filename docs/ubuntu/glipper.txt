@@ -1,0 +1,8 @@
+Q: How's glipper run at startup?
+A: /etc/xdg/autostart/glipper-autostart.desktop
+
+Q: Under which user will it run?
+A: The user who's currently loggined in.
+
+Q: Where's the network.conf file?
+A: /home/yongtao/.local/share/glipper/plugins/network.conf

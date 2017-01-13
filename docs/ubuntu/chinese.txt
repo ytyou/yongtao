@@ -1,0 +1,2 @@
+$ sudo apt-get install ibus-pinyin
+$ ibus restart

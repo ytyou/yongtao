@@ -1,0 +1,10 @@
+1. Current runlevel?
+$ systemctl get-default
+
+2. Available runlevels?
+$ systemctl list-units --type=target
+
+3. Change runlevel?
+$ systemctl set-default multi-user.target # this is runlevel 3 (no X)
+
+4. Reboot!

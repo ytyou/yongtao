@@ -1,0 +1,2 @@
+Q: Command "iptables -L" takes too long!
+A: Try "-n" option: "iptables -L -n". It will skip DNS resolution, etc.

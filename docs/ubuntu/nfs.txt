@@ -1,0 +1,16 @@
+1. Server setup
+
+$ apt-get install nfs-kernel-server
+
+Edit /etc/exports and add this line:
+
+/var/share 172.16.16.0/255.255.255.0(rw,sync)
+
+
+2. Client setup
+
+$ apt-get install nfs-common
+
+Edit /etc/fstab and add this line:
+
+172.16.16.1:/var/share /var/share nfs rw,user,auto 0 0

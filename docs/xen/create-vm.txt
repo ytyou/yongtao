@@ -1,0 +1,30 @@
+1. Create a logical volume (LV)
+    $ sudo lvcreate -L 16G -n <vm-name> /dev/sun-vg
+2. Create a config file /etc/xen/vm/<vm-name>.cfg with the following content:
+    builder = "hvm"
+    name = "<vm-name>"
+    memory = 2048
+    vcpus = 1
+    vif = ['mac=00:16:3e:xx:xx:xx,type=ioemu,ip=172.16.16.XXX,bridge=xenbr0']
+    disk = ['phy:/dev/sun-vg/<vm-name>,hda,w','file:/opt/iso/<os-image>.iso,hdc:cdrom,r']
+    sdl = 0
+    vnc = 1
+    vncconsole = 1
+    vnclisten = "0.0.0.0"
+    boot = "cd"
+    usbdevice = "tablet"
+    on_poweroff = "destroy"
+3. Create VM
+    $ sudo xl create /etc/xen/vm/<vm-name>.cfg
+4. Launch VNC viewer and install guest OS
+   4.1 To install Ubuntu, follow the instructions...
+   4.2 To install CentOS, wait for it to auto-login, and then click on the "Install to Hard Drive" icon...
+      4.2.1 Choose "Basic Storage Devices"
+      4.2.2 Choose "Yes, discard any data"
+      4.2.3 Choose "Use All Space"
+5. To shutdown the VM
+    $ sudo xl shutdown /etc/xen/vm/<vm-name>.cfg
+   Or
+    $ sudo xl destroy /etc/xen/vm/<vm-name>.cfg
+6. To start the VM
+    $ sudo xl create /etc/xen/vm/<vm-name>.cfg

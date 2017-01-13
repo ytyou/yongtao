@@ -1,0 +1,3 @@
+Update hostname in /etc/hostname file. For example,
+
+centos2.cloudwiz.io

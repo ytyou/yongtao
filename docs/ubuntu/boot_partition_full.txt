@@ -1,0 +1,19 @@
+If you get a "boot disk partition full" warning, look under /boot.
+Most likely you will find some unused (but installed) kernels. Use
+the following command to see which versions of the kernels you have
+installed on your machine:
+
+$ dpkg -l linux-image-\* | grep ^ii
+
+Then find out which version of the kernel you are currently USING:
+
+$ uname -r
+
+YOU DO NOT WANT TO UNINSTALL THE VERSION OF THE KERNEL YOU ARE USING!!!
+
+For those you are NOT using, you can safely remove them (and free up
+boot partition space):
+
+$ sudo apt-get purge linux-image-<version>-generic
+
+Good luck!

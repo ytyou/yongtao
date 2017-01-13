@@ -1,0 +1,5 @@
+systemctl disable bluetooth.service // bluetooth
+systemctl disable libvirtd.service  // virtualization
+systemctl disable firewalld         // disable iptables
+systemctl disable NetworkManager    // edit /etc/sysconfig/network-scripts/ifcfg-eth0.cfg
+                                    // set NM_CONTROLLED=no; ONBOOT=yes

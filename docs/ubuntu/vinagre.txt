@@ -1,0 +1,2 @@
+Q: Where're the bookmarks stored?
+A: ~/.local/share/vinagre/vinagre-bookmarks.xml

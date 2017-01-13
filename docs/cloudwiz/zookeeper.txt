@@ -1,0 +1,4 @@
+CONFIG: /opt/zookeeper/conf/zoo.cfg
+LOG: /var/log/zookeeper/zookeeper.log
+
+To test if it is running correctly, telnet into it and run "stats" command.

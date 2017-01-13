@@ -1,0 +1,13 @@
+Setting up NFS client
+
+1. install software
+$ yum install nfs-utils nfs-utils-lib
+
+2. make local directory (mounting point)
+$ mkdir -p /var/share
+
+3. mount manually
+$ mount 172.16.16.1:/var/share /var/share
+
+4. To mount permanently, add the following line to /etc/fstab
+172.16.16.1:/var/share /var/share nfs rw,user,auto 0 0

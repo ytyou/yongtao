@@ -1,0 +1,11 @@
+How to install X-Windows without network?
+
+1. Mount DVD
+   # mkdir /media/cdrom
+   # mount /dev/cdrom /media/cdrom
+
+2. Make sure DVD has what you need. Look for "GNOME Desktop" in the list:
+   # yum --disablerepo=* --enablerepo=c7-media grouplist
+
+3. If you found the group, install it:
+   # yum -y --disablerepo=* --enablerepo=c7-media groupinstall "GNOME Desktop"

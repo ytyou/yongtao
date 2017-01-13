@@ -1,0 +1,8 @@
+1. If you see a bogus region server "ns.cloudwiz.io":
+  1.1. Determine which host created it (by looking at the timestamp in the server name)
+  1.2. Stop the region server on that host;
+  1.3. Restart master;
+  1.4. Start the region server that was stopped in 1.2.
+  1.5. # export HBASE_HOME=/opt/hbase
+       # /opt/hbase/conf/create_table.sh
+  1.6. Make sure opentsdb can now start.
