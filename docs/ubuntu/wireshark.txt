@@ -1,0 +1,8 @@
+Q: How to setup wireshark?
+A: $ sudo apt-get install wireshark (select yes to run as non-root)
+   $ sudo groupadd wireshark (may already exist)
+   $ sudo usermod -a -G wireshark yongtao
+   $ sudo chgrp wireshark /usr/bin/dumpcap
+   $ sudo chmod 750 /usr/bin/dumpcap
+   $ sudo setcap cap_net_raw,cap_net_admin=eip /usr/bin/dumpcap
+   $ sudo reboot
