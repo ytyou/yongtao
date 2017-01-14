@@ -1,0 +1,6 @@
+Q: To scan for available WIFI:
+A: $ sudo iwlist wlp2s0 scan
+
+Q: How to adjust network startup timeout?
+A: Edit the following file and change "TimeoutStartSec"
+   /lib/systemd/system/networking.service
