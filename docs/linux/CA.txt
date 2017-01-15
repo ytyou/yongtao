@@ -1,0 +1,56 @@
+Create (Unofficial) Certificate Authority (CA)
+
+1. Create the directories to hold the CA certificate and related files:
+
+    $ sudo mkdir /etc/ssl/CA
+    $ sudo mkdir /etc/ssl/newcerts
+
+2. The CA needs a few additional files to operate, one to keep track of the last serial number used by the CA, each certificate must have a unique serial number, and another file to record which certificates have been issued:
+
+    $ sudo sh -c "echo '01' > /etc/ssl/CA/serial"
+    $ sudo touch /etc/ssl/CA/index.txt
+
+3. Edit /etc/ssl/openssl.cnf to point to the files we just created in the previous step, in [ CA_default ] section.
+
+dir           = /etc/ssl
+database      = $dir/CA/index.txt
+certificate   = $dir/certs/cacert.pem
+serial        = $dir/CA/serial
+private_key   = $dir/private/cakey.pem
+new_certs_dir = $dir/newcerts
+
+4. Create a self-signed root certificate:
+
+    $ openssl req -new -x509 -extensions v3_ca -keyout cakey.pem -out cacert.pem -days 3650
+
+   Remember the answers you supplied. You will need them when you create certiticates to be signed by this CA.
+
+5. Install the root certificate just created:
+
+    $ sudo mv cakey.pem /etc/ssl/private/
+    $ sudo mv cacert.pem /etc/ssl/certs/
+
+6. You are now ready to start signing certificates. To sign,
+
+    6.1 Generate a certificate signing request, server.csr;
+        6.1.1 Generate key:
+            $ openssl genrsa -des3 -out server.key 2048
+        6.1.2 Generate CSR
+            $ openssl rsa -in server.key -out server.key.insecure
+            $ mv server.key server.key.secure
+            $ mv server.key.insecure server.key
+            $ openssl req -new -key server.key -out server.csr
+    6.2 Sign it
+        $ sudo openssl ca -in server.csr -config /etc/ssl/openssl.cnf
+
+7. For applications that can be configured to use a CA certificate, you should also copy the /etc/ssl/certs/cacert.pem file to the /etc/ssl/certs/ directory on each server.
+
+
+Troubleshooting Tips
+
+If you get the following error while signing certificate:
+
+failed to update database
+TXT_DB error number 2
+
+it's because you are trying to sign the same certificate (with the same attributes) multiple times. To get around it, edit /etc/ssl/CA/index.txt.attr and set "unique_subject = no".
