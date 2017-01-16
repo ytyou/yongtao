@@ -1,3 +1,5 @@
+***** ALSO SEE dns.txt *****
+
 Q: How to verify bind9 configuration?
-A: $ named-checkconf /etc/bind/named.conf
-   $ named-checkzone /etc/bind/db.cloudwiz.io
+A: $ /usr/sbin/named-checkconf /etc/bind/named.conf
+   $ /usr/sbin/named-checkzone cloudwiz.io /etc/bind/db.cloudwiz.io
