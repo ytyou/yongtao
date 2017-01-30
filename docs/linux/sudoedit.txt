@@ -1,0 +1,1 @@
+$ sudo SUDO_EDITOR=/usr/bin/vim sudoedit /etc/sudoers

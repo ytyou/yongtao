@@ -1,3 +1,5 @@
+***** ALSO SEE bind9.txt *****
+
 Q: How to setup static DNS with DHCP?
 A: Add the static DNS in /etc/network/interfaces file;
    Edit file /etc/dhcp/dhclient.conf, and remove "domain-name-servers" from the following section:
