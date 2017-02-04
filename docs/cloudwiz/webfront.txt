@@ -1,0 +1,9 @@
+CONFIG: /opt/cloudinsight_webfront/conf/defaults.ini
+
+[datasource]
+datasource_urlroot = http://rhel4:4242
+
+Note that this URL, defined inside /opt/cloudinsight_webfront/conf/defaults.ini,
+needs to be accessible from client hosts where Grafana portal is accessed. This
+URL is used inside the browser to load metrics data from opentsdb. So, make sure
+this URL is _externally_ accessible.
