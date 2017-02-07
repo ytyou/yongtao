@@ -12,7 +12,7 @@ MARKER='@#CWIZ#@'
 TYPES=("counter" "gauge" "latency")
 METRICS=("cpu" "disk" "memory" "network")
 TAGNAMES=("tag1" "tag2" "tag3" "tag4" "tag5" "tag6")
-TAGVALUES=("value1" "value2" "value3" "exception")
+TAGVALUES=("value1" "warning" "error" "exception")
 
 while true
 do
