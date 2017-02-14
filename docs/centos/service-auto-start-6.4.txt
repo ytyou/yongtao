@@ -1,0 +1,8 @@
+To make a service start automatically on boot,
+
+$ chkconfig <service> on
+
+For example,
+
+$ chkconfig sshd on
+

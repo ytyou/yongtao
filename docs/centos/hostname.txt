@@ -1,3 +1,2 @@
-Update hostname in /etc/hostname file. For example,
-
-centos2.cloudwiz.io
+1. Update hostname in /etc/hostname file. For example: centos2.cloudwiz.io
+2. Update /etc/sysconfig/network and update the HOSTNAME
