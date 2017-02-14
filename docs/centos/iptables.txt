@@ -1,0 +1,1 @@
+To change default iptables rules, edit /etc/sysconfig/iptables file.
