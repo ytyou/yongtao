@@ -1,0 +1,4 @@
+To mount cdrom, for example:
+
+$ mkdir /mnt/cdrom
+$ mount /dev/cdrom /mnt/cdrom
