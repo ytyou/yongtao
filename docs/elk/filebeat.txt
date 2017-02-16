@@ -1,0 +1,1 @@
+1. Filebeat.yml file cannot contain tabs. Use spaces instead.
