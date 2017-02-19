@@ -1,0 +1,16 @@
+Use NAT to forward network traffic from nodes on a private network to an public address through a jumpboard node.
+
+1. On the internal node (on a private network), add a static route in the routing table to forward traffic designated to the public address to the jumpboard node. To do this, add the following line to file /etc/sysconfig/static-routes:
+
+any host <fqdn-of-public-address> gw <ip-of-jumpboard-node>
+
+
+2. On the jumpboard node, setup NAT to route traffic from internal nodes to the public address.
+
+$ iptables -t nat -A POSTROUTING -p tcp -s <internal-node-ip-range> -d <fqdn-of-public-address> --dport <port-of-public-address> -j MASQUERADE
+
+This will cause the jumpboard node to forward all the network traffic that came from internal nodes, designated to the public address and port, to be NAT'ed. In order for this to work, we also need to make sure net.ipv4.ip_forward is enabled in /etc/sysctl.conf.
+
+To persist this across reboots, after running the above command, run:
+
+$ service iptables save
