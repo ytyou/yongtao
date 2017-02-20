@@ -1,0 +1,11 @@
+Forward network traffic from nodes on a private network to an public address through a jumpboard node.
+
+1. On the internal node (on a private network), add a static route in the routing table to forward traffic designated to the public address to the jumpboard node. To do this, add the following line to file /etc/sysconfig/static-routes:
+
+any host <fqdn-of-public-address> gw <ip-of-jumpboard-node>
+
+
+2. On the jumpboard node, enable ip forwarding by setting net.ipv4.ip_forward = 1 in /etc/sysctl.conf.
+
+
+3. Reboot both nodes.
