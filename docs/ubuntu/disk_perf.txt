@@ -1,0 +1,7 @@
+To test hard disk read speed:
+
+$ sudo hdparm -tT /dev/xvda
+
+To test hard disk write speed:
+
+$ dd if=<path to a big file> of=<path to a temp file to write into> bs=1G count=1 oflag=dsync
