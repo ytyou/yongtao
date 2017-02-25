@@ -1,0 +1,79 @@
+#!/bin/bash
+
+CMD=""
+if [ $# -ge 1 ]; then
+    CMD=$1
+fi
+
+VM=""
+if [ $# -ge 2 ]; then
+    VM=$2
+fi
+
+SUDO=""
+if [ "_$USER" != "_root" ]; then
+    SUDO="sudo"
+fi
+
+CMDS=("create" "destroy" "list" "pause" "reboot" "shutdown" "start" "stop" "top" "unpause" "vcpu-list" "vm-list")
+
+function verify_cfg() {
+    if [ ! -r /etc/xen/vm/${VM}.cfg ]; then
+        echo "ERROR: Unknown VM \"$1\""
+        exit 2
+    fi
+}
+
+function do_cfg() {
+    verify_cfg
+    $SUDO xl $1 /etc/xen/vm/${VM}.cfg
+}
+
+function do_it() {
+    $SUDO xl $1
+}
+
+function do_vm() {
+    verify_cfg
+    $SUDO xl $1 $VM
+}
+
+case $CMD in
+    create|start)
+        do_cfg "create"
+        ;;
+    destroy)
+        do_vm "destroy"
+        ;;
+    list)
+        do_it "list"
+        ;;
+    pause)
+        do_vm "pause"
+        ;;
+    reboot)
+        do_vm "reboot"
+        ;;
+    shutdown|stop)
+        do_vm "shutdown"
+        ;;
+    top)
+        do_it "top"
+        ;;
+    unpause)
+        do_vm "unpause"
+        ;;
+    vcpu-list)
+        do_vm "vcpu-list"
+        ;;
+    vm-list)
+        do_it "vm-list"
+        ;;
+    *)
+        echo "ERROR: Command \"$CMD\" not supported."
+        echo "Supported commands: ${CMDS[@]}"
+        exit 1
+        ;;
+esac
+
+exit 0
