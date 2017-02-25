@@ -15,11 +15,12 @@ if [ "_$USER" != "_root" ]; then
     SUDO="sudo"
 fi
 
+# supported xl commands
 CMDS=("create" "destroy" "list" "pause" "reboot" "shutdown" "start" "stop" "top" "unpause" "vcpu-list" "vm-list")
 
 function verify_cfg() {
     if [ ! -r /etc/xen/vm/${VM}.cfg ]; then
-        echo "ERROR: Unknown VM \"$1\""
+        echo "ERROR: Unknown VM \"${VM}\""
         exit 2
     fi
 }
