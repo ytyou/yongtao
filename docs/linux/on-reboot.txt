@@ -1,0 +1,3 @@
+Q: How to run a command right after reboot?
+A: Add an entry in /etc/crontab:
+   @reboot <user> <command>
