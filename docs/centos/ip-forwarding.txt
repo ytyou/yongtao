@@ -5,7 +5,7 @@ Forward network traffic from nodes on a private network to an public address thr
 any host <fqdn-of-public-address> gw <ip-of-jumpboard-node>
 
 
-2. On the jumpboard node, enable ip forwarding by setting net.ipv4.ip_forward = 1 in /etc/sysctl.conf. Node needs to be rebooted. To enable ip forwarding without reboot, run: $ /sbin/sysctl -w net.ipv4.ip_forward=1
+2. On the jumpboard node, enable ip forwarding by setting net.ipv4.ip_forward = 1 in /etc/sysctl.conf. Node needs to be rebooted. To enable ip forwarding without reboot, run: $ /sbin/sysctl -w net.ipv4.ip_forward=1. Next add a NAT rule in iptables: $ iptables -t nat -A POSTROUTING -s <internal-host-ip-range> -d <fqdn-of-public-address> -j MASQUERADE. This command can be put in /etc/rc.local so that it will survive the reboot.
 
 
 3. Reboot both nodes.

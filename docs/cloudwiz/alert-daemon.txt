@@ -3,3 +3,4 @@ A: Download jars from teambition (Cloudwiz Internal project);
    Unpack jars into ~/.m2/repository/com/cloudmon;
    Build alert-common under cloudmon/alert-common: mvn clean install
    Build alert-daemon under cloudmon/alert-daemon: mvn package assembly:single
+   Pickup the new build at: cloudmon/alert-daemon/target/cloudmon-alertd-1.0-SNAPSHOT-jar-with-dependencies.jar
