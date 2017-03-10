@@ -1,0 +1,4 @@
+Q: bind() to 0.0.0.0:80 failed (13: Permission denied)
+A: Need to give app permission to bind to port lower than 1024:
+
+   $ sudo setcap cap_net_bind_service=+ep /opt/nginx-1.9.9/sbin/nginx
