@@ -1,0 +1,21 @@
+Nginx directive execution order:
+
+ 1. NGX_HTTP_SERVER_REWRITE_PHASE — the phase of request URI transformation on virtual server level;
+ 2. NGX_HTTP_FIND_CONFIG_PHASE — the phase of configuration location lookup;
+ 3. NGX_HTTP_REWRITE_PHASE — the phase of request URI transformation on location level;
+ 4. NGX_HTTP_POST_REWRITE_PHASE — request URI transformation post-processing phase;
+ 5. NGX_HTTP_PREACCESS_PHASE — access restrictions check preprocessing phase;
+ 6. NGX_HTTP_ACCESS_PHASE — access restrictions check phase;
+ 7. NGX_HTTP_POST_ACCESS_PHASE — access restrictions check post-processing phase;
+ 8. NGX_HTTP_TRY_FILES_PHASE — try_files directive processing phase;
+ 9. NGX_HTTP_CONTENT_PHASE — content generation phase;
+10. NGX_HTTP_LOG_PHASE — logging phase.
+
+
+Return codes:
+
+    NGX_OK — the request has been successfully processed, request must be routed to the next phase;
+    NGX_DECLINED — request must be routed to the next handler;
+    NGX_AGAIN, NGX_DONE — the request has been successfully processed, the request must be suspended until some event (e.g., subrequest finishes, socket becomes writeable or timeout occurs) and handler must be called again;
+    NGX_ERROR, NGX_HTTP_… — an error has occurred while processing the request.
+
