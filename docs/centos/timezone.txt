@@ -1,0 +1,10 @@
+Q: How to change timezone?
+A:
+
+List:
+
+$ timedatectl list-timezones
+
+Change:
+
+$ timedatectl set-timezone America/Chicago
