@@ -1,0 +1,8 @@
+Q: What to do when I see the following message in /var/log/secure?
+
+Mar 13 18:30:01 10-9-187-78 crond[21236]: PAM unable to dlopen(/lib64/security/pam_unix.so): /lib64/libc.so.6: version `GLIBC_2.14' not found (required by /lib64/libnsl.so.1)
+Mar 13 18:30:01 10-9-187-78 crond[21236]: PAM adding faulty module: /lib64/security/pam_unix.so
+
+A: restart cron daemon:
+
+$ sudo service crond restart
