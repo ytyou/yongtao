@@ -1,0 +1,93 @@
+#!/bin/bash
+
+. ./common
+
+# Make sure cluster is healthy
+cluster_status
+if [[ $? -ne 0 ]]; then
+    echo "Cluster not healthy. Won't restart."
+    exit 1
+fi
+
+cluster_routing_allocation_enable
+if [[ $? -ne 0 ]]; then
+    echo "cluster.routing.allocation.enable is not 'all'. Won't restart."
+    exit 2
+fi
+
+# Collect list of nodes to restart
+NODES=()
+cluster_node_ips
+echo "Will restart Elasticsearch on the following nodes:"
+for ip in "${NODES[@]}"; do
+    echo "  $ip"
+done
+read -r -p "Are you sure you want to restart the WHOLE cluster? [y|N] " response
+case "$response" in
+    [yY][eE][sS]|[yY])
+        ;;
+    *)
+        echo "Abort restart..."
+        exit 3
+        ;;
+esac
+
+# Disable shard allocation
+$CURL -XPUT $ES_URL/_cluster/settings -d '{"persistent":{"cluster.routing.allocation.enable":"none"}}'
+
+# Double-check shard allocation
+for i in {1..10}; do
+    sleep 1
+    cluster_routing_allocation_enable
+    if [[ $? -eq 3 ]]; then
+        break
+    fi
+done
+cluster_routing_allocation_enable
+if [[ $? -ne 3 ]]; then
+    echo "cluster.routing.allocation.enable is not 'none'. Abort restart."
+    exit 3
+fi
+
+# Perform a synced flush
+$CURL -XPOST $ES_URL/_flush/synced
+
+# Shutdown, do whatever, then start the cluster
+echo "Stopping elasticsearch nodes..."
+for ip in "${NODES[@]}"; do
+    echo "  Stopping elasticsearch on $ip..."
+    control_elasticsearch $ip "stop"
+done
+echo "All nodes are stopped!"
+echo "Starting elasticsearch nodes..."
+for ip in "${NODES[@]}"; do
+    echo "  Starting elasticsearch on $ip..."
+    control_elasticsearch $ip "start"
+done
+
+# Double-check cluster status
+for i in {1..100}; do
+    sleep 1
+    cluster_status
+    if [[ $? -eq 0 ]]; then
+        break
+    fi
+done
+cluster_status
+if [[ $? -ne 0 ]]; then
+    read -r -p "Cluster still not healthy. Continue to enable shard allocation? [y|N] " response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            ;;
+        *)
+            echo "Aborting..."
+            exit 4
+            ;;
+    esac
+fi
+
+# Reenable shard allocation
+$CURL -XPUT $ES_URL/_cluster/settings -d '{"persistent":{"cluster.routing.allocation.enable":"all"}}'
+
+echo "Done"
+exit 0
