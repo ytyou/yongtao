@@ -1,0 +1,7 @@
+To extract range of lines from a text file:
+
+$ sed -n <from>,<to>p <file>
+
+For example,
+
+$ sed -n 900,999p alertd.log
