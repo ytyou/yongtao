@@ -1,2 +1,4 @@
 $ sudo apt-get install ibus-pinyin
 $ ibus restart
+
+Then, in the "input source", select "Chinese (Pinyin) (IBus)".
