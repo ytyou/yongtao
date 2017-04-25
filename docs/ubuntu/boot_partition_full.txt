@@ -16,4 +16,8 @@ boot partition space):
 
 $ sudo apt-get purge linux-image-<version>-generic
 
+And finally:
+
+$ sudo apt autoremove
+
 Good luck!
