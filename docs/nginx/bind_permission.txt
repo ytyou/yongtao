@@ -1,0 +1,7 @@
+If you run into the following error:
+
+nginx: [emerg] bind() to 0.0.0.0:80 failed (13: Permission denied)
+
+You need to grant nginx the permission to bind port 80 like this:
+
+$ sudo setcap 'cap_net_bind_service=+ep' /opt/nginx-1.9.9/sbin/nginx
