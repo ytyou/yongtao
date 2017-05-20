@@ -5,6 +5,7 @@ ECHO=/bin/echo
 GREP=/bin/grep
 LS=/bin/ls
 MKDIR=/bin/mkdir
+PWD=/bin/pwd
 READLINK=/bin/readlink
 REALPATH=/usr/bin/realpath
 RM=/bin/rm
@@ -16,6 +17,8 @@ TEST=/usr/bin/test
 
 DRY_RUN=false
 STEP=0
+
+declare -A configs
 
 
 function dry_or_wet()
@@ -41,7 +44,13 @@ function error_out()
 
 function run_as_root()
 {
-    dry_or_wet "$SUDO $SH -c \"$1\""
+    local CMD=$1
+
+    if [ "_$USER" != "_root" ]; then
+        CMD="$SUDO $SH -c \"$1\""
+    fi
+
+    dry_or_wet "$CMD"
 }
 
 function find_in_file()
@@ -79,6 +88,22 @@ function install_pkgs()
 {
     run_as_root "$APT_GET install -y $@"
     return $?
+}
+
+# The config file should look like this:
+# key1:value1
+# key2:value2
+# ...
+# keyN:valueN
+function read_configs()
+{
+    local OLD_IFS=$IFS
+    IFS=":"
+    while read -r name value
+    do
+        configs["$name"]="$value"
+    done < $1
+    IFS=$OLD_IFS
 }
 
 # Remove the directory if it's empty
