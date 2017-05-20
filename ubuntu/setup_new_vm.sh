@@ -59,6 +59,7 @@ fi
 # Setup NFS file sharing
 next_step "Setup NFS file sharing at /var/share"
 if [ ! -d /var/share ]; then
+    install_pkg "nfs-common"
     run_as_root "$MKDIR -p /var/share"
     run_as_root "$ECHO '172.16.16.1:/var/share /var/share nfs rw,user,auto 0 0' >> /etc/fstab"
 fi
@@ -89,6 +90,11 @@ fi
 next_step "Setup passwordless sudo privilege"
 run_as_root "$SED -i 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers"
 
-# Install PasswordSafe
-next_step "Install PasswordSafe"
-install_pkg "passwordsafe"
+# Install commonly used packages
+next_step "Install commonly used packages"
+install_pkg "xclip"
+
+# Potential packages to install
+next_step "You might also be interested in installing the following packages:"
+$ECHO "- Email Client: sudo apt-get install thunderbird"
+$ECHO "- Password Manager: sudo apt-get install passwordsafe"
