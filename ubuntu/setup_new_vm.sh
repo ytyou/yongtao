@@ -29,9 +29,11 @@ done
 
 # Add shell alias
 next_step "Add custom aliases"
+$MKDIR -p $HOME/src
 find_in_file "alias cls=" ~/.bash_aliases
 if [ $? -ne 0 ]; then
     dry_or_wet "$ECHO \"alias cls='/usr/bin/clear'\" >> ~/.bash_aliases"
+    dry_or_wet "$ECHO \"alias src='cd ~/src'\" >> ~/.bash_aliases"
 fi
 
 # Generate ~/.vimrc file
@@ -92,6 +94,7 @@ run_as_root "$SED -i 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=(ALL:ALL) NOPASSWD: AL
 
 # Install commonly used packages
 next_step "Install commonly used packages"
+install_pkg "ibus-pinyin"
 install_pkg "nmap"
 install_pkg "traceroute"
 install_pkg "xclip"
