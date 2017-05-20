@@ -96,6 +96,10 @@ install_pkg "nmap"
 install_pkg "traceroute"
 install_pkg "xclip"
 
+# Add border to windows
+next_step "Add border to windows"
+run_as_root "$SED -i 's/-UnityDecoration-extents: 28px 0 0 0;/-UnityDecoration-extents: 28px 1px 1px 1px;/' /usr/share/themes/Ambiance/gtk-3.0/apps/unity.css"
+
 # Potential packages to install
 next_step "You might also be interested in installing the following packages:"
 $ECHO "- Password Manager: sudo apt-get install passwordsafe"
