@@ -1,4 +1,6 @@
+APT_GET=/usr/bin/apt-get
 CP=/bin/cp
+DPKG=/usr/bin/dpkg
 ECHO=/bin/echo
 GREP=/bin/grep
 LS=/bin/ls
@@ -8,6 +10,7 @@ REALPATH=/usr/bin/realpath
 RM=/bin/rm
 SED=/bin/sed
 SH=/bin/sh
+SSH_KEYGEN=/usr/bin/ssh-keygen
 SUDO=/usr/bin/sudo
 TEST=/usr/bin/test
 
@@ -36,10 +39,46 @@ function error_out()
     exit 3
 }
 
+function run_as_root()
+{
+    dry_or_wet "$SUDO $SH -c \"$1\""
+}
+
+function find_in_file()
+{
+    local PATTERN=$1
+    local FILE=$2
+    [ -f $FILE ] && $GREP -q "$PATTERN" $FILE
+    return $?
+}
+
 function next_step()
 {
     (( STEP++ ))
     $ECHO "STEP $STEP: $1"
+}
+
+function is_pkg_installed()
+{
+    $DPKG -l | $GREP "$1" | $GREP '^ii' > /dev/null
+    return $?
+}
+
+function install_pkg()
+{
+    is_pkg_installed "$1"
+    if [ $? -ne 0 ]; then
+        run_as_root "$APT_GET install -y $1"
+        return $?
+    else
+        return 0
+    fi
+}
+
+function install_pkgs()
+{
+    run_as_root "$APT_GET install -y $@"
+    return $?
 }
 
 # Remove the directory if it's empty

@@ -4,5 +4,6 @@ To increase VM screen resolution in VNC:
 2. Edit /etc/default/grub (of Guest OS) and add these lines:
    GRUB_GFXMODE=1280x960,1280x800,1280x720,1152x768,1152x700,1024x768,800x600
    GRUB_PAYLOAD_LINUX=keep
+   GRUB_CMDLINE_LINUX_DEFAULT="nomodeset"
 3. $ sudo update-grub
    $ sudo reboot

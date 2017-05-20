@@ -29,7 +29,7 @@ done
 
 # Add shell alias
 next_step "Add custom aliases"
-[ -f ~/.bash_aliases ] && $GREP -q "alias cls=" ~/.bash_aliases
+find_in_file "alias cls=" ~/.bash_aliases
 if [ $? -ne 0 ]; then
     dry_or_wet "$ECHO \"alias cls='/usr/bin/clear'\" >> ~/.bash_aliases"
 fi
@@ -46,7 +46,7 @@ fi
 
 # Add time to shell prompt
 next_step "Add [time] to shell prompt in ~/.bashrc"
-[ -f ~/.bashrc ] && $GREP -q '\\u@\\h\[\\t\]' ~/.bashrc
+find_in_file '\\u@\\h\[\\t\]' ~/.bashrc
 if [ $? -ne 0 ]; then
     if [ ! -f ~/.bashrc.bak ]; then
         dry_or_wet "$CP -n ~/.bashrc ~/.bashrc.bak"
@@ -59,6 +59,36 @@ fi
 # Setup NFS file sharing
 next_step "Setup NFS file sharing at /var/share"
 if [ ! -d /var/share ]; then
-    dry_or_wet "$SUDO $MKDIR -p /var/share"
-    dry_or_wet "$SUDO $SH -c \"$ECHO '172.16.16.1:/var/share /var/share nfs rw,user,auto 0 0' >> /etc/fstab\""
+    run_as_root "$MKDIR -p /var/share"
+    run_as_root "$ECHO '172.16.16.1:/var/share /var/share nfs rw,user,auto 0 0' >> /etc/fstab"
 fi
+
+# Update network startup timeout
+next_step "Reduce network startup timeout from 5min to 30sec"
+run_as_root "$SED -i 's/TimeoutStartSec=5min/TimeoutStartSec=30sec/' /lib/systemd/system/networking.service"
+
+# Update screen resolution
+next_step "Increase screen resolution"
+find_in_file "nomodeset" /etc/default/grub
+if [ $? -ne 0 ]; then
+    install_pkgs "xvfb xfonts-100dpi xfonts-75dpi xfstt"
+    run_as_root "$ECHO 'GRUB_GFXMODE=1280x960,1280x800,1280x720,1152x768,1152x700,1024x768,800x600' >> /etc/default/grub"
+    run_as_root "$ECHO 'GRUB_PAYLOAD_LINUX=keep' >> /etc/default/grub"
+    run_as_root "$SED -i 's/GRUB_CMDLINE_LINUX_DEFAULT=\\\"\\\"/GRUB_CMDLINE_LINUX_DEFAULT=\\\"nomodeset\\\"/' /etc/default/grub"
+    run_as_root "update-grub"
+    $ECHO "Reboot required!"
+fi
+
+# Generate SSH key
+next_step "Generate SSH key"
+if [ ! -f ~/.ssh/id_rsa ]; then
+    dry_or_wet "$SSH_KEYGEN -q -t rsa -f ~/.ssh/id_rsa -N ''"
+fi
+
+# Setup passwordless sudo privilege
+next_step "Setup passwordless sudo privilege"
+run_as_root "$SED -i 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers"
+
+# Install PasswordSafe
+next_step "Install PasswordSafe"
+install_pkg "passwordsafe"
