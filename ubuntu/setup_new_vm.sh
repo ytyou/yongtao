@@ -29,7 +29,7 @@ done
 
 # Add shell alias
 next_step "Add custom aliases"
-$MKDIR -p $HOME/src
+dry_or_wet "$MKDIR -p $HOME/src"
 find_in_file "alias cls=" ~/.bash_aliases
 if [ $? -ne 0 ]; then
     dry_or_wet "$ECHO \"alias cls='/usr/bin/clear'\" >> ~/.bash_aliases"
