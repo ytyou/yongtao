@@ -92,9 +92,10 @@ run_as_root "$SED -i 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=(ALL:ALL) NOPASSWD: AL
 
 # Install commonly used packages
 next_step "Install commonly used packages"
+install_pkg "nmap"
+install_pkg "traceroute"
 install_pkg "xclip"
 
 # Potential packages to install
 next_step "You might also be interested in installing the following packages:"
-$ECHO "- Email Client: sudo apt-get install thunderbird"
 $ECHO "- Password Manager: sudo apt-get install passwordsafe"
