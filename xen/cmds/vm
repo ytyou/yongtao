@@ -27,9 +27,9 @@ function verify_cfg() {
 
 function do_running() {
     local RUNNING=$($SUDO xl vm-list | /usr/bin/awk '{if ($3 !~ /name/) print $3}')
-    for vm in ${RUNNING[@]}; do
-        if [ "_${vm,,}" != "_all" ]; then
-            do_vm $1 $vm
+    for r in ${RUNNING[@]}; do
+        if [ "_${r,,}" != "_all" ]; then
+            do_vm $1 $r
         fi
     done
 }
@@ -44,6 +44,9 @@ function do_it() {
 }
 
 function do_vm() {
+    if [ "_$2" != "_" ]; then
+        VM=$2
+    fi
     if [ "_${VM,,}" == "_all" ]; then
         do_running $1
     else
