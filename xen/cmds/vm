@@ -25,6 +25,15 @@ function verify_cfg() {
     fi
 }
 
+function do_running() {
+    local RUNNING=$($SUDO xl vm-list | /usr/bin/awk '{if ($3 !~ /name/) print $3}')
+    for vm in ${RUNNING[@]}; do
+        if [ "_${vm,,}" != "_all" ]; then
+            do_vm $1 $vm
+        fi
+    done
+}
+
 function do_cfg() {
     verify_cfg
     $SUDO xl $1 /etc/xen/vm/${VM}.cfg
@@ -35,8 +44,12 @@ function do_it() {
 }
 
 function do_vm() {
-    verify_cfg
-    $SUDO xl $1 $VM
+    if [ "_${VM,,}" == "_all" ]; then
+        do_running $1
+    else
+        verify_cfg
+        $SUDO xl $1 $VM
+    fi
 }
 
 case $CMD in
