@@ -1,8 +1,18 @@
 Q: How to establish an SSH tunnel between two hosts?
-A: Assuming server is behind a firewall:
+A: If you do NOT have access to the other host, then you
+   need to setup the reverse-tunnel before hand.
 
-server$ ssh -R 9091:localhost:22 vpn.cloudwiz.cn
+server$ ssh -f -R 9091:localhost:22 vpn.cloudwiz.cn # pre-arrange this
 client$ ssh -p 9091 localhost
 
 When you connect to port 9091 on the client host, it will be forwarded
-to port 22 on the server host.
+to port 22 on the server host. Note that this requires that the
+client needs to be always-on.
+
+
+On the other hand, if you DO have access to the other host,
+
+client$ ssh -f -L 9091:talk.google.com:5222 -N user@server.com
+
+This will forward the local port 9091 to port 5222 on
+talk.google.com.
