@@ -1,0 +1,8 @@
+Q: How to establish an SSH tunnel between two hosts?
+A: Assuming server is behind a firewall:
+
+server$ ssh -R 9091:localhost:22 vpn.cloudwiz.cn
+client$ ssh -p 9091 localhost
+
+When you connect to port 9091 on the client host, it will be forwarded
+to port 22 on the server host.
