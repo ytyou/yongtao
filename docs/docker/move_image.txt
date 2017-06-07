@@ -1,0 +1,10 @@
+Q: How to move docker image from one host to another, without using repository?
+A:
+
+On source host:
+
+$ docker save -o <path/to/saved/image> <image-name>
+
+On destination host:
+
+$ docker load -i <path/to/saved/image/tar/file>
