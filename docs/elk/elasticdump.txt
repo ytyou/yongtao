@@ -1,0 +1,15 @@
+1. Installation:
+
+$ npm install elasticdump -g
+
+2. Migrate from one cluster to another:
+
+$ elasticdump --input=http://mysrc.com:9200/my_index --output=http://mydest.com:9200/my_index --type=analyzer
+$ elasticdump --input=http://mysrc.com:9200/my_index --output=http://mydest.com:9200/my_index --type=mapping
+$ elasticdump --input=http://mysrc.com:9200/my_index --output=http://mydest.com:9200/my_index --type=data
+
+Or
+
+$ elasticdump --input=http://mysrc.com:9200 --input-index all --output=http://mydest.com:9200 --type=analyzer
+$ elasticdump --input=http://mysrc.com:9200 --input-index all --output=http://mydest.com:9200 --type=mapping
+$ elasticdump --input=http://mysrc.com:9200 --input-index all --output=http://mydest.com:9200 --type=data
