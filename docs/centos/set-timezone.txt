@@ -1,0 +1,8 @@
+Q: How to change timezone?
+A:
+
+$ timedatectl list-timezones
+
+Find your timezone and then,
+
+$ timedatectl set-timezone Asia/Shanghai
