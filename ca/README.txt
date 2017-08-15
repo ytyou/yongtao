@@ -4,7 +4,7 @@ To create a Certificate Authority (CA),
 2. Manually edit /etc/ssl/openssl.cnf according to instructions provided by the script;
 3. Run create-ca2.sh;
    Country Name: CN
-   State or Province Name:
+   State or Province Name: Beijing
    Locality Name: Beijing
    Organization Name: Cloudwiz
    Organizational Unit Name:
