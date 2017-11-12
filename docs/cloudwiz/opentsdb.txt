@@ -1,3 +1,6 @@
 Configuration: /etc/opentsdb/opentsdb.conf
 Log: /var/log/opentsdb/...
 
+Q: How to obtain list of metrics in opentsdb?
+A: $ tsdb uid grep metrics <prefix>. For example,
+   $ tsdb uid grep metrics 2.2
