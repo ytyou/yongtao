@@ -6,3 +6,5 @@
   1.5. # export HBASE_HOME=/opt/hbase
        # /opt/hbase/conf/create_table.sh
   1.6. Make sure opentsdb can now start.
+
+2. Default admin port is: 16010

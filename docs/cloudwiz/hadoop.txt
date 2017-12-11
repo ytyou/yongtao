@@ -1,1 +1,2 @@
 1. Default port: 50070
+2. Command to get status: hdfs dfsadmin -report
