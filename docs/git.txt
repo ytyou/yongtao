@@ -1,0 +1,8 @@
+Q: From which repo was my repo cloned?
+A: $ git config --get remote.origin.url
+
+Q: Merge without auto commit?
+A: $ git merge <from-branch> --no-commit --no-ff
+
+Q: Unstage a staged file?
+A: $ git reset HEAD <starged-file>
