@@ -1,0 +1,2 @@
+Q: How to add a physical volume to a volume group?
+A: $ vgextend vg /dev/sdb1
