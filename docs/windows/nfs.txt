@@ -1,0 +1,9 @@
+Q: How to mount NFS server (on Linux) from Windows Server?
+A: In "Server Manager", click "Add roles and features"; Click "Next" until all the way
+   to the "Features" section; Check "Client for NFS"; Click the "Install" button.
+
+   You might need to reboot;
+   
+   On the DOS prompt, type: "mount \\172.16.16.1\var\share S:"
+
+   You can now access files shared on NFS server via drive S:.
