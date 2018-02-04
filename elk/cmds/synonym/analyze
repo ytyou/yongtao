@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. ./setenv
+
+curl -s "$ES_URL/$INDEX/_analyze?pretty&analyzer=$ANALYZER&text=cannot%20remove%20file"
+
+echo
+exit 0

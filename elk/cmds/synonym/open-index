@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. ./setenv
+
+curl -s -XPOST $ES_URL/$INDEX/_open
+
+echo
+exit 0

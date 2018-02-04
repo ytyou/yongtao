@@ -1,0 +1,361 @@
+==== [Regular] [term:notthere] [0] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 0,
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+
+==== [Regular] [term:remove] [1] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 0.375,
+    "hits" : [ {
+      "_index" : "expansion-query",
+      "_type" : "linux",
+      "_id" : "2",
+      "_score" : 0.375,
+      "_source" : {
+        "symptom" : "rm: cannot remove file: Permission denied",
+        "solution" : "Use sudo or login as root"
+      }
+    } ]
+  }
+}
+
+==== [Regular] [term:delete] [0] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 0,
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+
+==== [Regular] [term:found] [1] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 0.15342641,
+    "hits" : [ {
+      "_index" : "expansion-query",
+      "_type" : "linux",
+      "_id" : "1",
+      "_score" : 0.15342641,
+      "_source" : {
+        "symptom" : "top: command not found",
+        "solution" : "Run yum install top to install the package"
+      }
+    } ]
+  }
+}
+
+==== [Regular] [phrase:no such phrase] [0] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 0,
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+
+==== [Regular] [phrase:cannot remove file] [1] ====
+{
+  "took" : 2,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 1.125,
+    "hits" : [ {
+      "_index" : "expansion-query",
+      "_type" : "linux",
+      "_id" : "2",
+      "_score" : 1.125,
+      "_source" : {
+        "symptom" : "rm: cannot remove file: Permission denied",
+        "solution" : "Use sudo or login as root"
+      }
+    } ]
+  }
+}
+
+==== [Regular] [phrase:cannot delete file] [0] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 0,
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+
+==== [Synonym] [term:notthere] [0] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 0,
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+
+==== [Synonym] [term:remove] [1] ====
+{
+  "took" : 4,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 0.121029206,
+    "hits" : [ {
+      "_index" : "expansion-query",
+      "_type" : "linux",
+      "_id" : "2",
+      "_score" : 0.121029206,
+      "_source" : {
+        "symptom" : "rm: cannot remove file: Permission denied",
+        "solution" : "Use sudo or login as root"
+      }
+    } ]
+  }
+}
+
+==== [Synonym] [term:delete] [1] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 0.121029206,
+    "hits" : [ {
+      "_index" : "expansion-query",
+      "_type" : "linux",
+      "_id" : "2",
+      "_score" : 0.121029206,
+      "_source" : {
+        "symptom" : "rm: cannot remove file: Permission denied",
+        "solution" : "Use sudo or login as root"
+      }
+    } ]
+  }
+}
+
+==== [Synonym] [term:erase] [1] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 0.121029206,
+    "hits" : [ {
+      "_index" : "expansion-query",
+      "_type" : "linux",
+      "_id" : "2",
+      "_score" : 0.121029206,
+      "_source" : {
+        "symptom" : "rm: cannot remove file: Permission denied",
+        "solution" : "Use sudo or login as root"
+      }
+    } ]
+  }
+}
+
+==== [Synonym] [term:found] [1] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 0.121029206,
+    "hits" : [ {
+      "_index" : "expansion-query",
+      "_type" : "linux",
+      "_id" : "2",
+      "_score" : 0.121029206,
+      "_source" : {
+        "symptom" : "rm: cannot remove file: Permission denied",
+        "solution" : "Use sudo or login as root"
+      }
+    } ]
+  }
+}
+
+==== [Synonym] [phrase:no such phrase] [0] ====
+{
+  "took" : 6,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 0,
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+
+==== [Synonym] [phrase:cannot remove file] [1] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 7.4743032,
+    "hits" : [ {
+      "_index" : "expansion-query",
+      "_type" : "linux",
+      "_id" : "2",
+      "_score" : 7.4743032,
+      "_source" : {
+        "symptom" : "rm: cannot remove file: Permission denied",
+        "solution" : "Use sudo or login as root"
+      }
+    } ]
+  }
+}
+
+==== [Synonym] [phrase:cannot delete file] [1] ====
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 7.4743032,
+    "hits" : [ {
+      "_index" : "expansion-query",
+      "_type" : "linux",
+      "_id" : "2",
+      "_score" : 7.4743032,
+      "_source" : {
+        "symptom" : "rm: cannot remove file: Permission denied",
+        "solution" : "Use sudo or login as root"
+      }
+    } ]
+  }
+}
+
+==== [Synonym] [phrase:can not remove file] [1] ====
+[FAILED]
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 0,
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+
+==== [Synonym] [phrase:can not delete file] [1] ====
+[FAILED]
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 0,
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+
+
+==== SUMMARY ====
+
+Regular: 0 failed
+Synonym: 2 failed
+

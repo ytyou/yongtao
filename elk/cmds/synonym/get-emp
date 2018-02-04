@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. ./setenv
+
+curl -s $ES_URL/test1/employee/$1?pretty
+echo
+
+exit 0

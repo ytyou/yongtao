@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. ./setenv
+
+curl -s $ES_URL/test1/employee/_search?pretty -d "{\"query\":{\"multi_match\":{\"query\":\"$1\",\"fields\":[\"about\",\"last_name\"]}}}"
+echo
+
+exit 0

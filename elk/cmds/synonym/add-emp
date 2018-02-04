@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. ./setenv
+
+curl -s -XPUT $ES_URL/test1/employee/1 -d '{"first_name":"John","last_name":"Smith","age":25,"about":"I love to go rock climbing","interests":["sports","music","cats"]}'
+curl -s -XPUT $ES_URL/test1/employee/2 -d '{"first_name":"Jane","last_name":"Smith","age":32,"about":"I like to collect rock albums","interests":["music","pets"]}'
+curl -s -XPUT $ES_URL/test1/employee/3 -d '{"first_name":"Douglas","last_name":"Fir","age":35,"about":"I like to build cabinets","interests":["forestry"]}'
+curl -s -XPUT $ES_URL/test1/employee/4 -d '{"first_name":"Amy","last_name":"Fir","age":23,"about":"I enjoy hiking","interests":["nature"]}'
+echo
+
+exit 0

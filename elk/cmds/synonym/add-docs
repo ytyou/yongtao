@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. ./setenv
+
+curl -s -XPUT $ES_URL/$INDEX/linux/1 -d '{"symptom":"top: command not found","solution":"Run yum install top to install the package"}'
+curl -s -XPUT $ES_URL/$INDEX/linux/2 -d '{"symptom":"rm: cannot remove file: Permission denied","solution":"Use sudo or login as root"}'
+curl -s -XPUT $ES_URL/$INDEX/linux/3 -d '{"symptom":"Why is my machine so slow?","solution":"Use top to identify process that uses the most CPU"}'
+curl -s -XPUT $ES_URL/$INDEX/linux/4 -d '{"symptom":"My disk is full, what now?","solution":"Use the du command to find out who uses them"}'
+
+echo
+exit 0

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. ./setenv
+
+curl -s -XDELETE $ES_URL/$INDEX?pretty

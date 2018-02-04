@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. ./setenv
+
+curl -s $ES_URL/$INDEX/$TYPE/_search?pretty -d "{\"query\":{\"match_phrase\":{\"$1\":\"$2\"}}}"
+
+echo
+exit 0

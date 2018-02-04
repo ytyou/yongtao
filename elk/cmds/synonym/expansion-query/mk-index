@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. ./setenv
+
+curl -s -XPUT $ES_URL/$INDEX -d '{"settings":{"analysis":{"filter":{"synonym_filter_expansion":{"type":"synonym","synonyms_path":"analysis/synonyms-expansion.txt"}},"analyzer":{"synonym_expansion_query":{"tokenizer":"standard","filter":["standard","lowercase","synonym_filter_expansion"]}}}},"mappings":{"linux":{"properties":{"symptom":{"type":"string","analyzer":"standard"},"solution":{"type":"string","analyzer":"standard"}}}}}'
+
+echo
+exit 0
