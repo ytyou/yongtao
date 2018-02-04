@@ -89,6 +89,14 @@ echo "==== [Synonym] [term:found] [1] ===="
 OUT=$(curl -s $ES_URL/$INDEX/$TYPE/_search?pretty -d "{\"query\":{\"match\":{\"symptom\":{\"query\":\"erase\",\"analyzer\":\"$ANALYZER\"}}}}")
 total "synonym" 1 "$OUT"
 
+echo "==== [Synonym] [term:cannot] [1] ===="
+OUT=$(curl -s $ES_URL/$INDEX/$TYPE/_search?pretty -d "{\"query\":{\"match\":{\"symptom\":{\"query\":\"cannot\",\"analyzer\":\"$ANALYZER\"}}}}")
+total "synonym" 1 "$OUT"
+
+echo "==== [Synonym] [term:can not] [1] ===="
+OUT=$(curl -s $ES_URL/$INDEX/$TYPE/_search?pretty -d "{\"query\":{\"match\":{\"symptom\":{\"query\":\"can not\",\"analyzer\":\"$ANALYZER\"}}}}")
+total "synonym" 1 "$OUT"
+
 
 echo "==== [Synonym] [phrase:no such phrase] [0] ===="
 OUT=$(curl -s $ES_URL/$INDEX/$TYPE/_search?pretty -d "{\"query\":{\"match\":{\"symptom\":{\"query\":\"no such phrase\",\"type\":\"phrase\",\"analyzer\":\"$ANALYZER\"}}}}")
