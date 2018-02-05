@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ES_URL=172.16.16.100:9200
+INDEX=knowledgebase
+TYPE=article
+ANALYZER=synonym_analyzer
