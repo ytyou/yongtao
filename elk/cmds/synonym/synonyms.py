@@ -38,9 +38,48 @@ def main(argv):
     for k, v in synonyms.iteritems():
         if len(v) <= 1:
             continue
-        print("{0} = {1}".format(k, ','.join(v)))
-        print("{0} = {1}".format(v[0], ','.join(v[1:])))
+        if all_the_same(v):
+            continue
 
+        # expansion format
+        #print(','.join(v))
+
+        # contraction format
+        print_contraction(v)
+
+
+def all_the_same(synonyms):
+    first = synonyms[0]
+    for s in synonyms[1:]:
+        if s != first:
+            return False
+    return True
+
+
+def print_contraction(synonyms):
+    # this will be the one on the right side
+    synonym = None
+
+    # try to find one that does not contain spaces
+    for s in synonyms:
+        if s.find(' ') == -1 and s.find('-') == -1:
+            synonyms.remove(s)
+            synonym = s
+            break
+
+    if not synonym:
+        for s in synonyms:
+            if s.find(' ') == -1:
+                synonyms.remove(s)
+                synonym = s
+                break
+
+    # if nothing was found, pick the first one
+    if not synonym:
+        synonym = synonyms[0]
+        synonyms = synonyms[1:]
+
+    print("%s=>%s" % (','.join(synonyms), synonym))
 
 
 def parse_cmdline(argv):

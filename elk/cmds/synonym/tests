@@ -4,7 +4,9 @@
 
 
 regular=0
+regular_total=0
 synonym=0
+synonym_total=0
 
 
 function total()
@@ -30,6 +32,12 @@ function total()
             synonym=$((synonym+1))
             echo "[FAILED]"
         fi
+    fi
+
+    if [[ $search = "regular" ]]; then
+        regular_total=$((regular_total+1))
+    elif [[ $search = "synonym" ]]; then
+        synonym_total=$((synonym_total+1))
     fi
 
     echo $"$3"
@@ -102,6 +110,18 @@ echo "==== [Synonym] [phrase:no such phrase] [0] ===="
 OUT=$(curl -s $ES_URL/$INDEX/$TYPE/_search?pretty -d "{\"query\":{\"match\":{\"symptom\":{\"query\":\"no such phrase\",\"type\":\"phrase\",\"analyzer\":\"$ANALYZER\"}}}}")
 total "synonym" 0 "$OUT"
 
+echo "==== [Synonym] [phrase:remove file] [1] ===="
+OUT=$(curl -s $ES_URL/$INDEX/$TYPE/_search?pretty -d "{\"query\":{\"match\":{\"symptom\":{\"query\":\"remove file\",\"type\":\"phrase\",\"analyzer\":\"$ANALYZER\"}}}}")
+total "synonym" 1 "$OUT"
+
+echo "==== [Synonym] [phrase:delete file] [1] ===="
+OUT=$(curl -s $ES_URL/$INDEX/$TYPE/_search?pretty -d "{\"query\":{\"match\":{\"symptom\":{\"query\":\"delete file\",\"type\":\"phrase\",\"analyzer\":\"$ANALYZER\"}}}}")
+total "synonym" 1 "$OUT"
+
+echo "==== [Synonym] [phrase:erase file] [1] ===="
+OUT=$(curl -s $ES_URL/$INDEX/$TYPE/_search?pretty -d "{\"query\":{\"match\":{\"symptom\":{\"query\":\"erase file\",\"type\":\"phrase\",\"analyzer\":\"$ANALYZER\"}}}}")
+total "synonym" 1 "$OUT"
+
 echo "==== [Synonym] [phrase:cannot remove file] [1] ===="
 OUT=$(curl -s $ES_URL/$INDEX/$TYPE/_search?pretty -d "{\"query\":{\"match\":{\"symptom\":{\"query\":\"cannot remove file\",\"type\":\"phrase\",\"analyzer\":\"$ANALYZER\"}}}}")
 total "synonym" 1 "$OUT"
@@ -122,8 +142,8 @@ total "synonym" 1 "$OUT"
 echo
 echo "==== SUMMARY ===="
 echo
-echo "Regular: $regular failed"
-echo "Synonym: $synonym failed"
+echo "Regular: $regular/$regular_total failed"
+echo "Synonym: $synonym/$synonym_total failed"
 
 
 echo
