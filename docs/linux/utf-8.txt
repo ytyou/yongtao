@@ -1,0 +1,4 @@
+To convert ASCII file into UTF-8 file:
+
+$ echo -ne '\xEF\xBB\xBF' > whatever.utf8
+$ cat ascii.txt >> whatever.utf8
