@@ -1,0 +1,2 @@
+Q: How to find my RSA key fingerprint?
+A: $ ssh-keygen [-E md5] -lf <key-file> (private or public key)
