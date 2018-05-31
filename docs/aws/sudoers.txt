@@ -1,0 +1,2 @@
+Q: How to enable sudo for a new user?
+A: /etc/sudoers.d/cloud-init
