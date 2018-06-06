@@ -1,2 +1,23 @@
 Q. How to test hard disk read/write speed?
 A: $ dd if=<path to a big file> of=<path to a temp file to write into> bs=1G count=1 oflag=dsync
+
+Q: How to add and mount a new hard disk?
+A:
+   1. find the disk under /dev, e.g. /dev/sdb or /dev/vdb
+   2. create a primary linux partition:
+      $ fdisk /dev/sdb
+      Command (m for help): n
+         e   extended
+         p   primary partition (1-4)
+      p
+      Partition number (1-4): 1
+      ...
+      Command (m for help): w
+   3. create a file system on the new partition
+      $ /sbin/mkfs.ext4 -L /data /dev/sdb1
+   4. mount the file system
+      $ mkdir /data
+      $ mount /dev/sdb1 /data
+   5. mount automatically at boot
+      Add the following line to /etc/fstab
+      LABEL=/data   /data   ext4    defaults    1 2
