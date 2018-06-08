@@ -6,3 +6,6 @@ A: $ git merge <from-branch> --no-commit --no-ff
 
 Q: Unstage a staged file?
 A: $ git reset HEAD <starged-file>
+
+Q: Go back to a specific version for a specific file?
+A: $ git checkout <commit-id> -- <filename1> <filename2>
