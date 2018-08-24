@@ -1,0 +1,2 @@
+Q: How to get a list of all available mbeans?
+A: $ curl http://localhost:<port>/jolokia/list
