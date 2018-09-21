@@ -1,0 +1,5 @@
+Q: How to find list of all installed packages?
+A: $ apt list --installed
+
+Q: How to uninstall a package completely?
+A: $ sudo apt-get purge --auto-remove <package>
