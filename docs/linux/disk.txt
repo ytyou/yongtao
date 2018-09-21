@@ -13,6 +13,7 @@ A:
       Partition number (1-4): 1
       ...
       Command (m for help): w
+      NOTE: You may need to reboot if you are creating 2nd partition on an existing device!
    3. create a file system on the new partition
       $ /sbin/mkfs.ext4 -L /data /dev/sdb1
    4. mount the file system
