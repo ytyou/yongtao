@@ -13,3 +13,7 @@ A: $ git checkout <commit-id> -- <filename1> <filename2>
 Q: Create and push a new branch?
 A: $ git checkout -b <branch>
    $ git push -u origin <branch>
+
+Q: Delete a branch (locally and remotely)?
+A: $ git branch -d <branch>
+   $ git push origin --delete <branch>
