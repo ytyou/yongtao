@@ -1,0 +1,2 @@
+Q: How to display the character count of the current file?
+A: Press g CTRL-G in normal mode to display statistics on the cursor and the file.
