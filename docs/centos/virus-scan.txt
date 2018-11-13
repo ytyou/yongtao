@@ -1,0 +1,23 @@
+Q: How to do daily virus-scan on CentOS?
+A:
+
+1. Install/enable the EPEL repo:
+$ yum install epel-release
+
+2. Install required ClamAV packages:
+$ yum install clamav clamd
+
+3. Start the clamd service and set it to auto-start:
+$ chkconfig clamd on
+$ /etc/init.d/clamd start
+
+4. Configure daily scan
+$ vim /etc/cron.daily/clamscan.sh
+
+#!/bin/bash
+SCAN_DIR="/opt"
+LOG_FILE="/var/log/clamscan.log"
+/usr/bin/clamscan -i -r $SCAN_DIR > $LOG_FILE
+
+$ chmod +x /etc/cron.daily/clamscan.sh
+
