@@ -1,0 +1,20 @@
+VNET has 2 subnets:
+  1. PrivateSubnet - no internet access
+  2. DMZSubnet - has internet access
+
+Security Group for DMZSubnet:
+  1. Allow inbound (TCP) traffic from VNET to internet destinations
+
+Network interface for the VM in DMZ:
+  1. Enable IP forwarding
+
+Route table:
+  1. Add route for internet destinations with IP of VM in DMZ as next hop
+  2. Associate Route table to PrivateSubnet
+
+VM in DMZ:
+  1. Enable IP forwarding:
+     Add "net.ipv4.ip_forward = 1" in /etc/sysctl.conf
+     Do "/sbin/sysctl -w net.ipv4.ip_forward=1" before reboot;
+  2. Add NAT rule in iptables
+     iptables -t nat -A POSTROUTING -s 10.0.0.0/8 -d <internet-dst> -j MASQUERADE
