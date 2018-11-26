@@ -1,0 +1,20 @@
+Q: How to add swapfile?
+A:
+
+$ sudo dd if=/dev/zero of=/var/swapfile bs=1M count=2048
+$ sudo mkswap /var/swapfile
+$ sudo swapon /var/swapfile
+
+Then edit /etc/fstab and add this line:
+
+/var/swapfile  swap  swap  defaults  0 0
+
+Q: How to add a disk for swap?
+A:
+
+$ sudo mkswap -f /dev/xvdd
+$ sudo swapon /dev/xvdd
+
+Then edit /etc/fstab and add this line:
+
+/dev/xvdd  swap  swap  defaults  0 0
