@@ -1,0 +1,12 @@
+Q: How to change password on commmand line?
+A:
+
+To change local user's password:
+
+  net user <username> <new-password>
+
+To change domain user's password:
+
+  net user <username> * /<domain>
+
+You will be prompted, twice, to enter the new password.
