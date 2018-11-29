@@ -6,3 +6,6 @@ $ ssh-keygen -t rsa
 
 3. Passwordless ssh:
 $ ssh-copy-id -i id_rsa.pub centos5.cloudwiz.io
+
+4. Find all supported ciphers, etc, by sshd, from client point of view?
+$ nmap --script ssh2-enum-algos -sV -p 22 <ip> [-Pn]
