@@ -1,4 +1,8 @@
-Q: From which repo was my repo cloned?
+Q: How to pass credentials to git clone command?
+A: $ git clone https://<username>@github.com/<username>/<repository>.git
+   You will be prompted for password.
+
+Q: From which repo was my repo cloned from?
 A: $ git config --get remote.origin.url
 
 Q: Merge without auto commit?
