@@ -1,0 +1,6 @@
+Q: How to open ports? Permanently?
+A:
+   $ firewall-cmd --zone=public --add-port=5000/tcp
+   $ firewall-cmd --zone=public --add-port=6000-6099/udp
+
+   $ firewall-cmd --zone=public --permanent --add-port=7000/tcp
