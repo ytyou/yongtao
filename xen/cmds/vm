@@ -10,6 +10,11 @@ if [ $# -ge 2 ]; then
     VM=$2
 fi
 
+MEM=""
+if [ $# -ge 3 ]; then
+    MEM=$3
+fi
+
 SUDO=""
 if [ "_$USER" != "_root" ]; then
     SUDO="sudo"
@@ -19,9 +24,17 @@ fi
 CMDS=("create" "destroy" "list" "pause" "reboot" "shutdown" "start" "stop" "top" "unpause" "vcpu-list" "vm-list")
 
 function verify_cfg() {
-    if [ ! -r /etc/xen/vm/${VM}.cfg ]; then
+    local cfg=/etc/xen/vm/${VM}.cfg
+
+    if [ ! -r $cfg ]; then
         echo "ERROR: Unknown VM \"${VM}\""
         exit 2
+    fi
+
+    if [ ! -z "$MEM" ]; then
+        local _m=$(( $MEM * 1024 ))
+        sed -i "/^memory *= */c\memory = $_m" $cfg
+        sed -i "/^maxmem *= */c\maxmem = $_m" $cfg
     fi
 }
 
