@@ -3,3 +3,6 @@ A: Press g CTRL-G in normal mode to display statistics on the cursor and the fil
 
 Q: How to convert all letters in the file to lower case?
 A: ggguG
+
+Q: How to delete all empty lines in vim?
+A: :g/^$/d
