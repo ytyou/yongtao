@@ -1,0 +1,14 @@
+1. Copy/sync files and directories from local to remote:
+
+$ rsync -avz <local-dir>/ <user>@<remote-ip>:/<destination-dir>/
+
+2. Copy/sync files and directories from remote to local:
+
+$ rsync -avzh <user>@<remote-ip>:/<source-dir>/ <local-dst-dir>/
+
+3. Rsync over SSH
+
+$ rsync -avzhe ssh <user>@<remote-ip>:/<source-dir>/ <local-dst-dir>/
+
+4. Use --delete to remote files/dirs that does not exist at source.
+
