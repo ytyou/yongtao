@@ -1,0 +1,74 @@
+Q: See the list of interfaces on which tcpdump can listen:
+A: $ tcpdump -D
+
+Q: Listen on interface eth0:
+A: $ tcpdump -i eth0
+
+Q: Listen on any available interface:
+A: $ tcpdump -i any
+
+Q: Verbose output:
+A: $ tcpdump [-v|-vv|-vvv]
+
+Q: Print data of each packet in both hex and ASCII, excluding link level header:
+A: $ tcpdump -v -X
+
+Q: Print data of each packet in both hex and ASCII, including link level header:
+A: $ tcpdump -v -XX
+
+Q: Less verbose (than the default):
+A: $ tcpdump -q
+
+Q: Limit the capture to 100 packets:
+A: $ tcpdump -c 100
+
+Q: Record packet captures to a file:
+A: $ tcpdump -v -w capture.cap
+
+Q: Display packets previously recorded in a file:
+A: $ tcpdump -r capture.cap
+
+Q: Display IP addresses instead of domain names:
+A: $ tcpdump -n
+
+Q: Destination host:
+A: $ tcpdump dst host 192.168.1.2
+
+Q: Source host:
+A: $ tcpdump src host 192.168.1.2
+
+Q: Source OR destination host:
+A: $ tcpdump host 192.168.1.2
+
+Q: Destination subnet:
+A: $ tcpdump dst net 192.168.1.0/24
+
+Q: Source subnet:
+A: $ tcpdump src net 192.168.1.0/24
+
+Q: Source OR destination subnet:
+A: $ tcpdump net 192.168.1.0/24
+
+Q: Destination host and port:
+A: $ tcpdump "dst host 192.168.1.2 and dst port 1234"
+
+Q: TCP port range:
+A: $ tcpdump tcp dst portrange 1-1023
+
+Q: Capture any packets with destination IP and port:
+A: $ tcpdump "dst host 192.168.1.2 and (dst port 80 or dst port 443)"
+
+Q: ICMP?
+A: $ tcpdump -v icmp
+
+Q: ARP?
+A: $ tcpdump -v arp
+
+Q: ARP or ICMP?
+A: $ tcpdump -v "icmp or arp"
+
+Q: Capture 500 bytes of data for each packet rather than the default 68 bytes:
+A: $ tcpdump -s 500
+
+Q: Capture ALL bytes of data within each packet:
+A: $ tcpdump -s 0
