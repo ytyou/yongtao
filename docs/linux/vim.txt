@@ -6,3 +6,8 @@ A: ggguG
 
 Q: How to delete all empty lines in vim?
 A: :g/^$/d
+
+Q: Binary mode?
+A: :%!xxd
+   To go back to normal mode:
+   :%!xxd -r
