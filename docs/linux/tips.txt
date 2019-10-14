@@ -1,2 +1,11 @@
 Q: Command "iptables -L" takes too long!
 A: Try "-n" option: "iptables -L -n". It will skip DNS resolution, etc.
+
+Q: Why TCP port is not immediately released after use?
+A: The delay is specified here:
+
+   $ cat /proc/sys/net/ipv4/tcp_fin_timeout
+
+   To permenantly change it, edit /etc/sysctl.conf and add
+
+   net.ipv4.tcp_fin_timeout=20
