@@ -11,3 +11,12 @@
    session required  pam_limits.so
 
 3. Default port: 16010
+
+4. How to change region split policy?
+
+$ bin/hbase shell
+hbase(main):001:0> describe 'tsdb'
+...
+hbase(main):002:0> disable 'tsdb'
+hbase(main):003:0> alter 'tsdb', {METADATA => {'SPLIT_POLICY' => 'org.apache.hadoop.hbase.regionserver.ConstantSizeRegionSplitPolicy', 'MAX_FILESIZE' => '10000000000'}}
+hbase(main):004:0> enable 'tsdb'
