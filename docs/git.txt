@@ -29,3 +29,6 @@ A: $ git tag -a <tag> <commit-id> -m "comments"
 Q: How to delete a tag?
 A: $ git tag -d <tag>
    $ git push origin :refs/tags/<tag>
+
+Q: How to delete a remote tag?
+A: $ git push --delete origin <tag>
