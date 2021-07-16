@@ -4,16 +4,18 @@
 #
 # To build:
 #   1. Build cos7-sysd-base first;
-#   2. Download https://github.com/yiisoft/yii/releases/download/1.1.24/yii-1.1.24.a5ab20.tar.gz into ./tmp/;
-#   3. docker build --rm -t local/cos7-sysd-app .
+#   2. docker build --rm -t local/cos7-sysd-app .
 #
 # To run it (detached):
 #   docker run -d -ti --name podbean --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 80:80 local/cos7-sysd-app
 
 FROM local/cos7-sysd-base
 
-# Install Apache
+# Install Utils
 RUN yum -y update;
+RUN yum -y install git which
+
+# Install Apache
 RUN yum -y install httpd; systemctl enable httpd.service;
 
 # Install PHP
@@ -32,13 +34,23 @@ RUN yum -y install mysql-server; systemctl enable mysqld;
 # Install Memcached
 RUN yum -y install memcached; systemctl enable memcached;
 
+# Install Redis
+RUN yum -y install redis; systemctl enable redis.service;
+
 COPY tmp/ /tmp/
 
 # Install Yii 1.1
+RUN wget https://github.com/yiisoft/yii/releases/download/1.1.24/yii-1.1.24.a5ab20.tar.gz -P /tmp/;
 RUN tar xfz /tmp/yii-1.1.24.a5ab20.tar.gz -C /var/www/cgi-bin
 RUN ln -s /var/www/cgi-bin/yii-1.1.24.a5ab20 /var/www/cgi-bin/yii
 
 COPY var/ /var/
+COPY etc/ /etc/
+
+# Install Elasticsearch
+RUN rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+RUN yum -y install --enablerepo=elasticsearch elasticsearch; \
+    systemctl enable elasticsearch.service
 
 EXPOSE 80
 
