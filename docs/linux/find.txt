@@ -1,0 +1,2 @@
+Q: Find all files with extension .txt?
+A: $ find . -type f -name "*.txt"
