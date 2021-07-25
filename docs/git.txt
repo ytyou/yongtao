@@ -32,3 +32,6 @@ A: $ git tag -d <tag>
 
 Q: How to delete a remote tag?
 A: $ git push --delete origin <tag>
+
+Q: How to un-delete everything under a directory?
+A: $ git checkout -- path/to/directory

@@ -13,3 +13,13 @@ Or
 $ elasticdump --input=http://mysrc.com:9200 --input-index all --output=http://mydest.com:9200 --type=analyzer
 $ elasticdump --input=http://mysrc.com:9200 --input-index all --output=http://mydest.com:9200 --type=mapping
 $ elasticdump --input=http://mysrc.com:9200 --input-index all --output=http://mydest.com:9200 --type=data
+
+
+// get index settings
+GET /<index>/_settings
+
+// analyze API
+GET /<index>/_analyze
+{
+    "text" : "text to be analyzed"
+}

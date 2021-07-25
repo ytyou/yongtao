@@ -7,7 +7,7 @@
 #   2. docker build --rm -t local/cos7-sysd-app .
 #
 # To run it (detached):
-#   docker run -d -ti --name podbean -h "pbyou#" --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 80:80 local/cos7-sysd-app
+#   docker run -d -ti --name podbean -h "pbyou1" --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 80:80 -p 443:443 local/cos7-sysd-app
 #
 # To attach to the container:
 #   docker exec -it podbean /bin/bash
@@ -37,14 +37,11 @@ RUN yum -y install memcached; systemctl enable memcached;
 # Install Redis
 RUN yum -y install redis; systemctl enable redis.service;
 
-#COPY tmp/ /tmp/
-
 # Install Yii 1.1
 #RUN wget https://github.com/yiisoft/yii/releases/download/1.1.24/yii-1.1.24.a5ab20.tar.gz -P /tmp/;
 #RUN tar xfz /tmp/yii-1.1.24.a5ab20.tar.gz -C /var/www/cgi-bin
 #RUN ln -s /var/www/cgi-bin/yii-1.1.24.a5ab20 /var/www/cgi-bin/yii
 
-#COPY var/ /var/
 COPY etc/ /etc/
 
 # Install Elasticsearch
@@ -53,5 +50,8 @@ RUN yum -y install --enablerepo=elasticsearch elasticsearch; \
     systemctl enable elasticsearch.service
 
 EXPOSE 80
+EXPOSE 443
+
+COPY root/ /root/
 
 CMD [ "/usr/sbin/init" ]
