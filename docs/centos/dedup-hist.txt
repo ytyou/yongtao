@@ -1,0 +1,2 @@
+Q: How to get rid of duplicate commands in command history?
+A: export HISTCONTROL=ignoredups

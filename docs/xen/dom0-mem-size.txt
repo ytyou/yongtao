@@ -1,3 +1,5 @@
 Q: How to set dom0 memory size?
 A: Edit /etc/default/grub and add a line:
    GRUB_CMDLINE_XEN_DEFAULT="dom0_mem=512M,max:512M"
+
+   Then run "sudo update-grub" and reboot.

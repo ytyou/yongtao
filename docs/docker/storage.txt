@@ -1,0 +1,2 @@
+Q. Where does dockerd store its data (images, containers, etc.)?
+A. /var/lib/docker

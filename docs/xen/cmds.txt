@@ -1,0 +1,11 @@
+o To list physical volumes:
+
+$ sudo pvs
+
+o To list logical volumes:
+
+$ sudo lvs
+
+o To remove logical volumes:
+
+$ sudo lvremove <physical-volume>/<logical-volume> (e.g. sun-vg/centos9)
