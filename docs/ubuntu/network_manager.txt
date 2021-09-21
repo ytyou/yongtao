@@ -1,0 +1,13 @@
+Q: How to disable NetworkManager permanently?
+A:
+   $ systemctl stop NetworkManager.service
+   $ systemctl disable NetworkManager.service
+   $ systemctl stop NetworkManager-wait-online.service
+   $ systemctl disable NetworkManager-wait-online.service
+   $ systemctl stop NetworkManager-dispatcher.service
+   $ systemctl disable NetworkManager-dispatcher.service
+   $ systemctl stop network-manager.service
+   $ systemctl disable network-manager.service
+
+   Do NOT "apt purge network-manager"! It will also purge
+   ubuntu-desktop and gnome-control-center.
