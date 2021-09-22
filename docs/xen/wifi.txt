@@ -19,6 +19,7 @@
    netmask 255.255.255.0
    gateway 172.16.16.1
    dns-nameservers 172.16.16.1
+   pre-up rmmod dummy; modprobe dummy numdummies=1
 
 4. Put dummy0 on the Xen bridge, in /etc/network/interfaces
 
