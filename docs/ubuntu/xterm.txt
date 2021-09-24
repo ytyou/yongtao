@@ -4,6 +4,8 @@ A: Put the following in ~/.Xresources:
 ! Configuration for xterm
 
 xterm*utf8:   1
+xterm*scaleHeight: 1.0
+xterm*selectToClipboard: true
 
 ! Make alt work
 xterm*eightBitInput:   false
