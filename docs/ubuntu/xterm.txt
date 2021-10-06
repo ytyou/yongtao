@@ -1,3 +1,7 @@
+Q: How to fix the "underscores disappeared" problem?
+A: Tweak the "scaleHeight" resource.
+   xterm*scaleHeight: 1.01
+
 Q: How to have xterm display Chinese characters correctly?
 A: Put the following in ~/.Xresources:
 

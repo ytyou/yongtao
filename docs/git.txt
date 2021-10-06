@@ -35,3 +35,9 @@ A: $ git push --delete origin <tag>
 
 Q: How to un-delete everything under a directory?
 A: $ git checkout -- path/to/directory
+
+Q: How to merge upstream repo into your fork's default branch?
+A: $ git checkout <default-branch>
+   $ git pull https://github.com/<original-owner>/<original-repo>.git <upstream-branch>
+   (resolve conflicts, if any; then commit the merge)
+   $ git push origin <default-branch>
