@@ -72,3 +72,18 @@ A: $ tcpdump -s 500
 
 Q: Capture ALL bytes of data within each packet:
 A: $ tcpdump -s 0
+
+Q: To monitor HTTP traffic including request and response headers and message body:
+A: $ tcpdump -A -s 0 'tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)'
+
+Q: To monitor HTTP traffic including request and response headers and message body from a particular source:
+A: $ tcpdump -A -s 0 'src example.com and tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)'
+
+Q: To monitor HTTP traffic including request and response headers and message body from local host to local host:
+A: $ tcpdump -A -s 0 'tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)' -i lo
+
+Q: To only include HTTP requests:
+A: modify “tcp port 80” to “tcp dst port 80” in above commands
+
+Q: Capture TCP packets from local host to local host
+A: $ tcpdump -i lo
