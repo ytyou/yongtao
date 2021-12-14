@@ -4,3 +4,12 @@ A: $ sudo iwlist wlp2s0 scan
 Q: How to adjust network startup timeout?
 A: Edit the following file and change "TimeoutStartSec"
    /lib/systemd/system/networking.service
+
+Q: Why it keeps disconnecting?
+A: Check which version of wifi adapter firmware is loaded:
+   $ dmesg | grep iwl | grep firmware
+   No see which ones are available:
+   $ ll /lib/firmware/iwlwifi-8000C-*
+   If newer ones are available, try loading new ones by:
+   $ sudo mv /lib/firmware/iwlwifi-8000C-16.ucode /lib/firmware/iwlwifi-8000C-16.ucode.BROKEN
+   $ sudo reboot

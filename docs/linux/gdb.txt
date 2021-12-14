@@ -1,0 +1,27 @@
+Q: How to toggle between CLI mode and TUI mode?
+A: <Ctrl>-X 1 or <Ctrl>-X 2
+
+Q: How to refresh screen?
+A: <Ctrl>-L
+
+Q: How to run Python script?
+A: python print("hello, world!")
+   (may not be compatible with the Python on your host, so be careful)
+
+Q: How to run Shell command?
+A: shell <cmd>
+
+Q: Print structures/classes in pretty format?
+A: set print pretty on
+
+Q: How to do "reverse debugging"?
+A: Use the "record" command, and then "reverse-stepi", "watch", "reverse-continue"
+   Or, on new Intel CPUs, use "record btrace", or "rr"
+
+Q: .gdbinit
+A:
+set history save on
+set print pretty on
+set pagination off
+set confirm off
+

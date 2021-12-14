@@ -1,0 +1,8 @@
+Q: How to install perf?
+A: apt install linux-tools-common linux-tools-generic linux-tools-`uname -r`
+
+Q: How to record performance data?
+A: $ perf record -g <exe> <args>
+
+Q: How to see stats from perf record?
+A: $ perf report -g 'graph,0.5,caller'
