@@ -1,0 +1,11 @@
+Q: Current runlevel?
+A: In this case it's 'graphical.target'
+pi@raspberrypi:~ $ ll /etc/systemd/system/default.target
+lrwxrwxrwx 1 root root 36 Oct 30 04:21 /etc/systemd/system/default.target -> /lib/systemd/system/graphical.target
+
+Q: Change runlevel to console only?
+A:
+pi@raspberrypi:~ $ sudo systemctl set-default multi-user.target
+...
+pi@raspberrypi:~ $ ll /etc/systemd/system/default.target
+lrwxrwxrwx 1 root root 37 Nov 17 17:53 /etc/systemd/system/default.target -> /lib/systemd/system/multi-user.target

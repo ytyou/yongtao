@@ -1,0 +1,15 @@
+Q: Can't ping VM!
+A: Make sure the "dummy0" network interface is created. If not,
+   create 2 files under /etc/systemd/network/:
+   1. 10-dummy0.netdev:
+      [NetDev]
+      Name=dummy0
+      Kind=dummy
+   2. 20-dummy0.network:
+      [Match]
+      Name=dummy0
+
+      [Network]
+      Address=172.16.16.1
+   Then, make sure service "systemd-networkd" is enabled and running.
+   "NetworkManager" can/should be stopped.

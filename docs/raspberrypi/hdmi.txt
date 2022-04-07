@@ -1,0 +1,5 @@
+Q: No HDMI signal; screen is blank! Now what?
+A: Edit /boot/config.txt and uncomment the following lines:
+   #hdmi_force_hotplug=1
+   #hdmi_drive=2
+   #hdmi_safe=1 (try above 2 first; try this one if still not working)

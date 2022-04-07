@@ -1,0 +1,13 @@
+Q: Where's wifi config/settings?
+A: /etc/wpa_supplicant/wpa_supplicant.conf
+
+   You can have multiple "network"s in the config. They will be scaned
+   in the order that appeared in the config file. If "scan_ssid=1" is
+   added to the config, hidden SSID's will also be scanned. If you don't
+   need to scan hidden SSIDs then set "scan_ssid=0" (which is default).
+
+Q: How do I (manually) scan for Wifi SSIDs?
+A: $ sudo iwlist wlan0 scan
+
+Q: How to restart Wifi?
+A: $ sudo wpa_cli reconfigure
