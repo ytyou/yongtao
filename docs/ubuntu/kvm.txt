@@ -1,0 +1,50 @@
+Q: How to install qemu-kvm on Ubuntu 2022.04?
+A: apt install cpu-checker qemu qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst
+
+Q: How to start qemu-kvm?
+A: systemctl status libvirtd
+   systemctl start libvirtd
+
+Q: How to create a VM?
+A: $ /usr/bin/virt-install -v --name tt-dev0-s --vcpus 4 --memory 8192 --cdrom /data/iso/ubuntu-22.04-desktop-amd64.iso --disk path=/vm.ssd/tt-dev0-s.img,bus=virtio,size=128 --os-variant ubuntu22.04 --network network=default,model=virtio,mac=52:54:00:00:00:02 --graphics vnc,port=5900,listen=0.0.0.0
+
+Q: How to access VM from outside?
+A: Enable net.ipv4.ip_forward in /etc/sysctl.conf;
+   Create /etc/qemu/bridge.conf root:qemu 0640, with content: allow virbr0
+   $ chmod u+s /usr/lib/qemu/qemu-bridge-helper
+
+Q: How to assign static IP to a VM?
+A: $ virsh net-list (list all networks)
+   $ virsh net-dumpxml default (dump out detail info about network "default")
+   $ virsh net-edit default (edit info of the network "default")
+
+   Your network xml should container a section like this:
+
+     <dhcp>
+       <range start='192.168.122.2' end='192.168.122.254'/>
+     </dhcp>
+
+   Change the above to:
+     <dhcp>
+       <range start='192.168.122.2' end='192.168.122.254'/>
+       <host mac='52:54:00:a0:cc:19' name='centos7' ip='192.168.122.2'/>
+       <host mac='52:54:00:a0:cc:1a' name='ubuntu8' ip='192.168.122.3'/>
+       ... ...
+     </dhcp>
+
+   Not sure if you have to have the 'name' attribute in there.
+
+Q: How to restart the 'default' network?
+A: $ virsh net-destroy default
+   $ virsh net-start default
+
+Q: How to start/reboot/shutdown/power-off a VM?
+A: $ virsh start|reboot|shutdown|destroy <VM>
+
+Q: How to delete a VM?
+A: $ virsh undefine --domain <VM> --remove-all-storage
+
+Q: How to forward specific port to a VM?
+A: To forward port 3000 from host (192.168.8.4) to <VM> (192.168.122.6):
+   $ sudo iptables -R LIBVIRT_FWI 1 -d 192.168.122.0/24 -o virbr0 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+   $ sudo iptables -t nat -A PREROUTING -d 192.168.8.4 -p tcp --dport 3000 -j DNAT --to-destination 192.168.122.6:3000
