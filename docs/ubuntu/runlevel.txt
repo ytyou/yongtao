@@ -1,0 +1,6 @@
+Q: What's the current runlevel?
+A: $ systemctl get-default
+   graphical.target
+
+Q: Change the runlevel to console?
+A: $ sudo systemctl set-default multi-user.target

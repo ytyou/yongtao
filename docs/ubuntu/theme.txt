@@ -9,3 +9,12 @@ A: Assuming you are using Ambiance theme, edit file
    to
       -UnityDecoration-extents: 28px 1px 1px 1px;
    and logout.
+
+Q: How to display seconds on top of the frame?
+A: To check:
+   $ gsettings get org.gnome.desktop.interface clock-show-seconds
+   To enable seconds:
+   $ gsettings set org.gnome.desktop.interface clock-show-seconds true
+   To disable seconds:
+   $ gsettings set org.gnome.desktop.interface clock-show-seconds false
+   Need to reboot after change

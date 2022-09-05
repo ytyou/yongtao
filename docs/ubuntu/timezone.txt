@@ -1,0 +1,8 @@
+Q: What's my current timezone?
+A: $ timedatectl
+
+Q: List of all supported timezones?
+A: $ timedatectl list-timezones
+
+Q: How to change timezone?
+A: $ sudo timedatectl set-timezone America/Los_Angeles
