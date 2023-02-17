@@ -22,6 +22,10 @@ Q: Delete a branch (locally and remotely)?
 A: $ git branch -d <branch>
    $ git push origin --delete <branch>
 
+Q: Create a new branch from an old commit?
+A: $ git checkout -b <new-branch> <commit-id>
+   $ git push -u origin <new-branch>
+
 Q: How to create a tag?
 A: $ git tag -a <tag> <commit-id> -m "comments"
    $ git push origin <tag>

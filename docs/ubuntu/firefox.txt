@@ -1,0 +1,2 @@
+Q: How to remove firefox?
+A: $ sudo snap remove --purge firefox

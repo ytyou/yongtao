@@ -1,0 +1,9 @@
+Q: How to stop badly behaving snapd-desktop-integration service?
+A: $ snap info snapd-desktop-integration  # note the version number in the output
+   $ edit /etc/systemd/system/snap-snapd\\x2ddesktop\\x2dintegration-49.mount
+     change 'WantedBy' to 'graphical.target
+   $ systemctl disable snap-snapd\\x2ddesktop\\x2dintegration-49.mount
+   $ snap stop snapd-desktop-integration
+
+   OR, just
+   $ snap remove snapd-desktop-integration

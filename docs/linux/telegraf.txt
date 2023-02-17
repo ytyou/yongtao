@@ -1,0 +1,11 @@
+INSTALLATION
+
+o etc/logrotate.d/telegraf  ==>  /etc/logrotate.d/
+o etc/telegraf/  ==>  /etc/
+o usr/bin/telegraf  ==>  /usr/bin/
+o usr/lib/telegraf/scripts/init.sh  ==>  /etc/init.d/
+o usr/lib/telegraf/scripts/telegraf.service  ==>  /etc/systemd/system/
+o var/log/telegraf/  ==>  /var/log/
+
+o Create a user: telegraf.telegraf
+  $ sudo useradd -G telegraf --no-create-home --shell /sbin/nologin

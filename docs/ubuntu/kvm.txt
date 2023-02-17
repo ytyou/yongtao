@@ -42,7 +42,8 @@ Q: How to start/reboot/shutdown/power-off a VM?
 A: $ virsh start|reboot|shutdown|destroy <VM>
 
 Q: How to delete a VM?
-A: $ virsh undefine --domain <VM> --remove-all-storage
+A: $ virsh destroy --domain <VM>
+   $ virsh undefine --domain <VM> --remove-all-storage
 
 Q: How to forward specific port to a VM?
 A: To forward port 3000 from host (192.168.8.4) to <VM> (192.168.122.6):
