@@ -49,3 +49,13 @@ Q: How to forward specific port to a VM?
 A: To forward port 3000 from host (192.168.8.4) to <VM> (192.168.122.6):
    $ sudo iptables -R LIBVIRT_FWI 1 -d 192.168.122.0/24 -o virbr0 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
    $ sudo iptables -t nat -A PREROUTING -d 192.168.8.4 -p tcp --dport 3000 -j DNAT --to-destination 192.168.122.6:3000
+
+Q: How to find the IP address of KVM guest VM?
+A: method1:
+     1. $ virsh net-list
+     2. $ virsh net-dhcp-leases <network> (e.g. 'default')
+   method2:
+     1. $ virsh list
+     2. $ virsh domifaddr <vm> (e.g. 'ubuntu0')
+   method3:
+     1. $ arp -an | grep <mac-address-of-vm>

@@ -14,6 +14,10 @@ A: $ git reset HEAD <starged-file>
 Q: Go back to a specific version for a specific file?
 A: $ git checkout <commit-id> -- <filename1> <filename2>
 
+Q: How to revert the last commit, permanently?
+A: git reset --hard HEAD^
+   git push --force-with-lease
+
 Q: Create and push a new branch?
 A: $ git checkout -b <branch>
    $ git push -u origin <branch>

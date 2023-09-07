@@ -1,2 +1,6 @@
 Q: How to remove firefox?
 A: $ sudo snap remove --purge firefox
+   OR
+   $ sudo apt-get purge firefox
+   OR
+   $ sudo apt-get purge firefox-esr
