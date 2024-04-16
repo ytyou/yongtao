@@ -54,3 +54,6 @@ Q: How to checkout a tag?
 A: $ git checkout tags/<tag> -b <new-branch>
    Example,
    $ git checkout tags/v0.4.2 -b v0-4-2
+
+Q: How to clone from a local repository (via SSH)?
+A: $ git clone ssh://tt-dev0-s/home/yongtao/src/ticktock
