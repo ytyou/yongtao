@@ -1,7 +1,7 @@
 Setting up NFS client
 
 1. install software
-$ yum install nfs-utils nfs-utils-lib
+$ yum install nfs-utils [nfs-utils-lib]
 
 2. make local directory (mounting point)
 $ mkdir -p /var/share
