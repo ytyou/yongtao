@@ -57,3 +57,6 @@ A: $ git checkout tags/<tag> -b <new-branch>
 
 Q: How to clone from a local repository (via SSH)?
 A: $ git clone ssh://tt-dev0-s/home/yongtao/src/ticktock
+
+Q: How to cherry-pick a commit to be merged into current branch?
+A: $ git cherry-pick <commit-id>

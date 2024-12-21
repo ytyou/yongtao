@@ -1,0 +1,20 @@
+To create a service to run right before the shutdown process begin:
+
+1. sudo systemctl edit --force --full ticktockdb-shutdown.service, and put in the following
+
+[Unit]
+Description=Shutdown TickTockDB cleanly before system shutdown
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/home/yongtao/scripts/service/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
+
+2. sudo systemctl daemon-reload
+3. make sure /home/yongtao/scripts/service/shutdown.sh is ready
+4. sudo systemctl start ticktockdb-shutdown.service
+5. sudo systemctl enable ticktockdb-shutdown.service

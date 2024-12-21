@@ -1,0 +1,5 @@
+Q: How to set locale to en_US.UTF-8?
+A: $ apt install locales
+   $ /usr/sbin/locale-gen en_US.UTF-8
+
+   Also, /etc/locale.conf => "LANG=en_US.UTF-8"

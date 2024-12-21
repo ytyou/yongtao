@@ -6,3 +6,6 @@ A: $ apt list --upgradable
 
 Q: How to uninstall a package completely?
 A: $ sudo apt-get purge --auto-remove <package>
+
+Q: How to find the package that installed a perticular file?
+A: $ dpkg -S <path-to-file>
