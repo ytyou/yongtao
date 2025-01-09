@@ -1,0 +1,6 @@
+Q: How to add timestamp in shell prompt?
+A: Edit /etc/bashrc (or ~/.bashrc); find where PS1 is set, and add "\t".
+
+Q: How to display shell prompt as the title of the terminal window?
+A: The terminal emulator finds, in the PS1 environment variable, the specific code (\e]0;)
+   and uses everything up to the \a as the terminal window title.

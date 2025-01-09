@@ -1,0 +1,2 @@
+Q: Which package contains/provides a perticular file?
+A: $ zypper se --provides --match-exact <filename>

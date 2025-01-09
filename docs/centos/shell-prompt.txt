@@ -1,2 +1,0 @@
-Q: How to add timestamp in shell prompt?
-A: Edit /etc/bashrc (or ~/.bashrc); find where PS1 is set, and add "\t".
